@@ -2,6 +2,9 @@ package br.ufcg;
 
 public class Disciplina {
     private String nomeDisciplina;
+    private Integer[] notas = {0, 0, 0, 0};
+    private Integer horasDeEstudo = 0;
+
     public Disciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
     }
@@ -16,6 +19,8 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return this.nomeDisciplina;
+        return (
+                this.nomeDisciplina + "\n"
+                );
     }
 }
