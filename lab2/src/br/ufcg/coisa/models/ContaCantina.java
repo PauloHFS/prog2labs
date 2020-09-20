@@ -47,6 +47,10 @@ public class ContaCantina {
         this.lanches = new LancheRepositorio();
     }
 
+    public String getNomeCantina() {
+        return this.nomeCantina;
+    }
+
     // TODO: Documentar
     /**
      * @param qtdItens

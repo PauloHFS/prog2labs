@@ -44,6 +44,11 @@ public class ContaLaboratorio {
         this(nomeLaboratorio, 2000);
     }
 
+    // TODO: Documentar
+    public String getNomeLaboratorio() {
+        return this.nomeLaboratorio;
+    }
+
     /**
      * Consome espaço na conta do laboratório.
      *

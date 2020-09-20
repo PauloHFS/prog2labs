@@ -29,44 +29,48 @@ public class Aluno {
         this.saude = new Saude();
     }
 
-    // TODO: Documentar e IMPLEMENTAR
+    // TODO: Documentar
     /**
      * 
      * @param nomeLaboratorio
      */
-    void cadastraLaboratorio(String nomeLaboratorio) {
+    public void cadastraLaboratorio(String nomeLaboratorio) {
+        this.contasLaboratorios.cadastrarLaboratorio(nomeLaboratorio);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
+    // TODO: Documentar
     /**
      * 
      * @param nomeLaboratorio
      * @param cota
      */
-    void cadastraLaboratorio(String nomeLaboratorio, int cota) {
+    public void cadastraLaboratorio(String nomeLaboratorio, int cota) {
+        this.contasLaboratorios.cadastrarLaboratorio(nomeLaboratorio, cota);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
+    // TODO: Documentar
     /**
      * 
      * @param nomeLaboratorio
      * @param mbytes
      */
-    void consomeEspaco(String nomeLaboratorio, int mbytes) {
+    public void consomeEspaco(String nomeLaboratorio, int mbytes) {
+        this.contasLaboratorios.consomeEspaco(nomeLaboratorio, mbytes);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    void liberaEspaco(String nomeLaboratorio, int mbytes) {
+    // TODO: Documentar
+    public void liberaEspaco(String nomeLaboratorio, int mbytes) {
+        this.contasLaboratorios.liberaEspaco(nomeLaboratorio, mbytes);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    boolean atingiuCota(String nomeLaboratorio) {
-        return false;
+    // TODO: Documentar
+    public boolean atingiuCota(String nomeLaboratorio) {
+        return this.contasLaboratorios.atingiuCota(nomeLaboratorio);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    String laboratorioToString(String nomeLaboratorio) {
-        return nomeLaboratorio;
+    // TODO: Documentar
+    public String laboratorioToString(String nomeLaboratorio) {
+        return this.contasLaboratorios.laboratorioToString(nomeLaboratorio);
     }
 
     // TODO: Documentar
@@ -80,40 +84,43 @@ public class Aluno {
     }
 
     // TODO: Documentar
-    void cadastraNota(String nomeDisciplina, int nota, double valorNota) {
+    public void cadastraNota(String nomeDisciplina, int nota, double valorNota) {
         this.disciplinas.cadastrarNota(nomeDisciplina, nota, valorNota);
     }
 
     // TODO: Documentar
-    boolean aprovado(String nomeDisciplina) {
+    public boolean aprovado(String nomeDisciplina) {
         return this.disciplinas.aprovado(nomeDisciplina);
     }
 
     // TODO: Documentar
-    String disciplinaToString(String nomeDisciplina) {
+    public String disciplinaToString(String nomeDisciplina) {
         return this.disciplinas.disciplinaToString(nomeDisciplina);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    void cadastraCantina(String nomeCantina) {
+    // TODO: Documentar
+    public void cadastraCantina(String nomeCantina) {
+        this.contasCantinas.cadastrarCantina(nomeCantina);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    void cadastraLanche(String nomeCantina, int qtdItens, int valorCentavos) {
+    // TODO: Documentar
+    public void cadastraLanche(String nomeCantina, int qtdItens, int valorCentavos) {
+        this.contasCantinas.cadastrarLanche(nomeCantina, qtdItens, valorCentavos);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    void pagarConta(String nomeCantina, int valorCentavos) {
+    // TODO: Documentar
+    public void pagarConta(String nomeCantina, int valorCentavos) {
+        this.contasCantinas.pagarConta(nomeCantina, valorCentavos);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    int getFaltaPagar(String nomeCantina) {
-        return 0;
+    // TODO: Documentar
+    public int getFaltaPagar(String nomeCantina) {
+        return this.contasCantinas.getFaltaPagar(nomeCantina);
     }
 
-    // TODO: Documentar e IMPLEMENTAR
-    String cantinaToString(String nomeCantina) {
-        return nomeCantina;
+    // TODO: Documentar
+    public String cantinaToString(String nomeCantina) {
+        return this.contasCantinas.cantinaToString(nomeCantina);
     }
 
     // TODO: Documentar

@@ -1,7 +1,8 @@
 package br.ufcg.coisa.repositorios;
 
-import br.ufcg.coisa.models.Disciplina;
 import java.util.ArrayList;
+
+import br.ufcg.coisa.models.Disciplina;
 
 //TODO: Documentar
 public class DisciplinaRepositorio {
@@ -56,11 +57,12 @@ public class DisciplinaRepositorio {
 
     // TODO: Documentar
     public String disciplinaToString(String nomeDisciplina) {
-        String disciplinaString;
-        
-        for (Disciplina disciplina: this.disciplinas) {
+        String disciplinaString = null;
+
+        for (Disciplina disciplina : this.disciplinas) {
             if (disciplina.getNomeDisciplina().equals(nomeDisciplina)) {
-                disciplinaString = disciplina.toString()
+                disciplinaString = disciplina.toString();
+                break;
             }
         }
 
