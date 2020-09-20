@@ -22,7 +22,7 @@ public class AlunoRepositorio {
     }
 
     // TODO: Documentar
-    private Aluno getAluno(String nomeAluno) {
+    public Aluno getAluno(String nomeAluno) {
         Aluno aluno = null;
 
         for (Aluno a : this.alunos) {
@@ -32,6 +32,16 @@ public class AlunoRepositorio {
         }
 
         return aluno;
+    }
+
+    // TODO: Documentar
+    public boolean haAlunosCadastrados() {
+        return this.alunos.size() != 0;
+    }
+
+    // TODO: Documentar
+    public boolean temAluno(String nomeAluno) {
+        return this.getAluno(nomeAluno) != null;
     }
 
     // TODO: Documentar
@@ -140,6 +150,11 @@ public class AlunoRepositorio {
     public void defineSaudeFisica(String nomeAluno, String valor) {
         Aluno aluno = this.getAluno(nomeAluno);
         aluno.defineSaudeFisica(valor);
+    }
+
+    public void defineSaudeEmoji(String nomeAluno, String emoji) {
+        Aluno aluno = this.getAluno(nomeAluno);
+        aluno.defineSaudeEmoji(emoji);
     }
 
     // TODO: Documentar
