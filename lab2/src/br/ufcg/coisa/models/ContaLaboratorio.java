@@ -1,4 +1,4 @@
-package br.ufcg.coisa;
+package br.ufcg.coisa.models;
 
 /**
  * Representação de uma Conta no Laboratório da UFCG.

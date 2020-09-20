@@ -1,4 +1,4 @@
-package br.ufcg.coisa;
+package br.ufcg.coisa.models;
 
 import br.ufcg.coisa.repositorios.LancheRepositorio;
 
@@ -47,7 +47,7 @@ public class ContaCantina {
         this.lanches = new LancheRepositorio();
     }
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      * @param qtdItens
      * @param valorCentavos
@@ -91,7 +91,7 @@ public class ContaCantina {
         return this.valorDivida;
     }
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      * @return
      */

@@ -1,4 +1,4 @@
-package br.ufcg.coisa;
+package br.ufcg.coisa.models;
 
 /**
  * Representação de uma Disciplina.
@@ -44,24 +44,25 @@ public class Disciplina {
      * Constrói uma Disciplina a partir de seu nome e da quantidade de notas.
      * 
      * @param nomeDisciplina Nome da Disciplina
-     * @param numNotas Quantidade de Notas da Disciplina
+     * @param numNotas       Quantidade de Notas da Disciplina
      */
     public Disciplina(String nomeDisciplina, int numNotas) {
         this.nomeDisciplina = nomeDisciplina;
         this.notas = new Double[numNotas];
         this.horasDeEstudo = 0;
         this.media = 0.0;
-        int[] pesos = {1, 1, 1, 1};
+        int[] pesos = { 1, 1, 1, 1 };
         this.pesos = pesos;
     }
 
     /**
-     * Constrói uma Disciplina a partir de seu nome e da quantidade de notas com seus respectivos pesos.
-     * O tamanho da Array dos pesos deve ser igual a quantidade de notas.
+     * Constrói uma Disciplina a partir de seu nome e da quantidade de notas com
+     * seus respectivos pesos. O tamanho da Array dos pesos deve ser igual a
+     * quantidade de notas.
      * 
      * @param nomeDisciplina Nome da Disciplina
-     * @param numNotas Quantidade de Notas da Disciplina
-     * @param pesoNotas Array com os Pesos de cada nota
+     * @param numNotas       Quantidade de Notas da Disciplina
+     * @param pesoNotas      Array com os Pesos de cada nota
      */
     public Disciplina(String nomeDisciplina, int numNotas, int[] pesoNotas) {
         this(nomeDisciplina, numNotas);
@@ -69,6 +70,11 @@ public class Disciplina {
             this.notas[i] = 0.0;
         }
         this.pesos = pesoNotas;
+    }
+
+    // TODO: Documentar
+    public String getNomeDisciplina() {
+        return this.nomeDisciplina;
     }
 
     /**

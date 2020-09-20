@@ -1,4 +1,4 @@
-package br.ufcg.coisa;
+package br.ufcg.coisa.models;
 
 /**
  * Representação da Saúde do Aluno.
@@ -22,7 +22,7 @@ public class Saude {
      */
     private String emoji;
 
-    //TODO: atualizar documentação
+    // TODO: atualizar documentação
     /**
      * Constrói o objeto Saúde com a Saúde Mental e Fisica por padrão "boas".
      */
@@ -56,7 +56,7 @@ public class Saude {
         }
     }
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      * @param valor
      */
@@ -64,7 +64,7 @@ public class Saude {
         this.emoji = valor;
     }
 
-    //TODO: atualizar Documentação
+    // TODO: atualizar Documentação
     /**
      * Retorna a atual situação da Saúde Geral do aluno.
      * 
@@ -74,7 +74,7 @@ public class Saude {
      */
     public String getStatusGeral() {
         String statusGeralString;
-        
+
         if (this.saudeMental == "boa" && this.saudeFisica == "boa") {
             statusGeralString = "boa";
         } else if (this.saudeMental == "fraca" && this.saudeFisica == "fraca") {
@@ -86,7 +86,7 @@ public class Saude {
         if (this.emoji != null) {
             statusGeralString += " " + this.emoji;
         }
-        
+
         return statusGeralString;
     }
 

@@ -1,22 +1,22 @@
 package br.ufcg.coisa.repositorios;
 
-import br.ufcg.coisa.utils.Lanche;
+import br.ufcg.coisa.models.utils.Lanche;
 
 //TODO: Documentar
 /**
  */
 public class LancheRepositorio {
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      */
     private Lanche[] lanches;
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      */
     private Integer lanchesCadatrados;
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      */
     public LancheRepositorio() {
@@ -24,8 +24,8 @@ public class LancheRepositorio {
         this.lanchesCadatrados = 0;
     }
 
-    //TODO: Documentar 
-    //FIXME: reajustar array quando cadastrado acima do limite
+    // TODO: Documentar
+    // FIXME: reajustar array quando cadastrado acima do limite
     /**
      * @param qtdItens
      * @param valorCentavos
@@ -38,7 +38,7 @@ public class LancheRepositorio {
         }
     }
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      */
     @Override

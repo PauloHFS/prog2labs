@@ -1,4 +1,4 @@
-package br.ufcg.coisa.utils;
+package br.ufcg.coisa.models.utils;
 
 //TODO: Documentar
 /**
@@ -21,9 +21,9 @@ public class Lanche {
      */
     private String detalhes;
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
-
+     * 
      * @param qtdItens
      * @param valorCentavos
      * @param detalhes
@@ -34,7 +34,7 @@ public class Lanche {
         this.detalhes = detalhes;
     }
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      * @param qtdItens
      * @param valorCentavos
@@ -43,7 +43,7 @@ public class Lanche {
         this(qtdItens, valorCentavos, null);
     }
 
-    //TODO: Documentar
+    // TODO: Documentar
     /**
      */
     @Override
