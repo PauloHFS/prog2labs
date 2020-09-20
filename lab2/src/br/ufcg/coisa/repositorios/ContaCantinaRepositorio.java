@@ -20,51 +20,41 @@ public class ContaCantinaRepositorio {
         this.contasCantinas.add(contaCantina);
     }
 
-    // TODO: DOcumentar
-    public void cadastrarLanche(String nomeCantina, int qtdItens, int valorCentavos) {
-        for (ContaCantina contaCantina : this.contasCantinas) {
-            if (contaCantina.getNomeCantina().equals(nomeCantina)) {
-                contaCantina.cadastraLanche(qtdItens, valorCentavos);
+    // TODO: Documentar
+    private ContaCantina getContaCantina(String nomeCantina) {
+        ContaCantina contaCantina = null;
+
+        for (ContaCantina contaCantinaAux : this.contasCantinas) {
+            if (contaCantinaAux.getNomeCantina().equals(nomeCantina)) {
+                contaCantina = contaCantinaAux;
                 break;
             }
         }
+
+        return contaCantina;
+    }
+
+    // TODO: DOcumentar
+    public void cadastrarLanche(String nomeCantina, int qtdItens, int valorCentavos) {
+        ContaCantina contaCantina = this.getContaCantina(nomeCantina);
+        contaCantina.cadastraLanche(qtdItens, valorCentavos);
     }
 
     // TODO: Documentar
     public void pagarConta(String nomeCantina, int valorCentavos) {
-        for (ContaCantina contaCantina : this.contasCantinas) {
-            if (contaCantina.getNomeCantina().equals(nomeCantina)) {
-                contaCantina.pagaConta(valorCentavos);
-                break;
-            }
-        }
+        ContaCantina contaCantina = this.getContaCantina(nomeCantina);
+        contaCantina.pagaConta(valorCentavos);
     }
 
     // TODO: DOCUMENTAR
     public int getFaltaPagar(String nomeCantina) {
-        int divida = 0;
-
-        for (ContaCantina contaCantina : this.contasCantinas) {
-            if (contaCantina.getNomeCantina().equals(nomeCantina)) {
-                divida = contaCantina.getFaltaPagar();
-                break;
-            }
-        }
-
-        return divida;
+        ContaCantina contaCantina = this.getContaCantina(nomeCantina);
+        return contaCantina.getFaltaPagar();
     }
 
     // TODO: Documentar
     public String cantinaToString(String nomeCantina) {
-        String cantinaString = null;
-
-        for (ContaCantina contaCantina : this.contasCantinas) {
-            if (contaCantina.getNomeCantina().equals(nomeCantina)) {
-                cantinaString = contaCantina.toString();
-                break;
-            }
-        }
-
-        return cantinaString;
+        ContaCantina contaCantina = this.getContaCantina(nomeCantina);
+        return contaCantina.toString();
     }
 }

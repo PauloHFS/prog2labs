@@ -20,52 +20,41 @@ public class DisciplinaRepositorio {
         this.disciplinas.add(disciplina);
     }
 
-    // TODO: Documentar
-    public void cadastrarHoras(String nomeDisciplina, int horas) {
-        for (Disciplina disciplina : this.disciplinas) {
-            if (disciplina.getNomeDisciplina().equals(nomeDisciplina)) {
-                disciplina.cadastraHoras(horas);
+    // TODO: DOCUMENTAR
+    private Disciplina getDisciplina(String nomeDisciplina) {
+        Disciplina disciplina = null;
+
+        for (Disciplina disciplinaAux : this.disciplinas) {
+            if (disciplinaAux.getNomeDisciplina().equals(nomeDisciplina)) {
+                disciplina = disciplinaAux;
                 break;
             }
         }
+
+        return disciplina;
+    }
+
+    // TODO: Documentar
+    public void cadastrarHoras(String nomeDisciplina, int horas) {
+        Disciplina disciplina = this.getDisciplina(nomeDisciplina);
+        disciplina.cadastraHoras(horas);
     }
 
     // TODO: Documentar
     public void cadastrarNota(String nomeDisciplina, int nota, double valorNota) {
-        for (Disciplina disciplina : this.disciplinas) {
-            if (disciplina.getNomeDisciplina().equals(nomeDisciplina)) {
-                disciplina.cadastraNota(nota, valorNota);
-                break;
-            }
-        }
+        Disciplina disciplina = this.getDisciplina(nomeDisciplina);
+        disciplina.cadastraNota(nota, valorNota);
     }
 
     // TODO: Documentar
-    // FIXME: REFATORAR
     public boolean aprovado(String nomeDisciplina) {
-        boolean isAprovado = false;
-
-        for (Disciplina disciplina : this.disciplinas) {
-            if (disciplina.getNomeDisciplina().equals(nomeDisciplina)) {
-                isAprovado = disciplina.aprovado();
-                break;
-            }
-        }
-
-        return isAprovado;
+        Disciplina disciplina = this.getDisciplina(nomeDisciplina);
+        return disciplina.aprovado();
     }
 
     // TODO: Documentar
     public String disciplinaToString(String nomeDisciplina) {
-        String disciplinaString = null;
-
-        for (Disciplina disciplina : this.disciplinas) {
-            if (disciplina.getNomeDisciplina().equals(nomeDisciplina)) {
-                disciplinaString = disciplina.toString();
-                break;
-            }
-        }
-
-        return disciplinaString;
+        Disciplina disciplina = this.getDisciplina(nomeDisciplina);
+        return disciplina.toString();
     }
 }

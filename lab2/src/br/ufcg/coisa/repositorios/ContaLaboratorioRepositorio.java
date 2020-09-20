@@ -27,50 +27,40 @@ public class ContaLaboratorioRepositorio {
     }
 
     // TODO: Documentar
-    public void consomeEspaco(String nomeLaboratorio, int mbytes) {
+    private ContaLaboratorio getContaLaboratorio(String nomeLaboratorio) {
+        ContaLaboratorio contaLaboratorio = null;
+
         for (ContaLaboratorio contaLab : this.contasLaboratorios) {
             if (contaLab.getNomeLaboratorio().equals(nomeLaboratorio)) {
-                contaLab.consomeEspaco(mbytes);
+                contaLaboratorio = contaLab;
                 break;
             }
         }
+
+        return contaLaboratorio;
+    }
+
+    // TODO: Documentar
+    public void consomeEspaco(String nomeLaboratorio, int mbytes) {
+        ContaLaboratorio contaLaboratorio = this.getContaLaboratorio(nomeLaboratorio);
+        contaLaboratorio.consomeEspaco(mbytes);
     }
 
     // TODO: DOcumentar
     public void liberaEspaco(String nomeLaboratorio, int mbytes) {
-        for (ContaLaboratorio contaLab : this.contasLaboratorios) {
-            if (contaLab.getNomeLaboratorio().equals(nomeLaboratorio)) {
-                contaLab.liberaEspaco(mbytes);
-                break;
-            }
-        }
+        ContaLaboratorio contaLaboratorio = this.getContaLaboratorio(nomeLaboratorio);
+        contaLaboratorio.liberaEspaco(mbytes);
     }
 
     // TODO: Documentar
     public boolean atingiuCota(String nomeLaboratorio) {
-        boolean atingiuCota = false;
-
-        for (ContaLaboratorio contaLab : this.contasLaboratorios) {
-            if (contaLab.getNomeLaboratorio().equals(nomeLaboratorio)) {
-                atingiuCota = contaLab.atingiuCota();
-                break;
-            }
-        }
-
-        return atingiuCota;
+        ContaLaboratorio contaLaboratorio = this.getContaLaboratorio(nomeLaboratorio);
+        return contaLaboratorio.atingiuCota();
     }
 
     // TODO: Documentar
     public String laboratorioToString(String nomeLaboratorio) {
-        String laboratorioString = null;
-
-        for (ContaLaboratorio contaLab : this.contasLaboratorios) {
-            if (contaLab.getNomeLaboratorio().equals(nomeLaboratorio)) {
-                laboratorioString = contaLab.toString();
-                break;
-            }
-        }
-
-        return laboratorioString;
+        ContaLaboratorio contaLaboratorio = this.getContaLaboratorio(nomeLaboratorio);
+        return contaLaboratorio.toString();
     }
 }
