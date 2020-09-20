@@ -3,8 +3,6 @@ package br.ufcg.coisa;
 /**
  * Representação de uma Disciplina.
  * 
- * TODO: Adicionar mais notas na disciplina.
- * 
  * @author Paulo Hernane Fontes e Silva
  */
 public class Disciplina {
@@ -19,6 +17,11 @@ public class Disciplina {
     private Double[] notas;
 
     /**
+     * Pesos das Notas da Disciplina
+     */
+    private int[] pesos;
+
+    /**
      * Horas de Estudo da Disciplina.
      */
     private Integer horasDeEstudo;
@@ -29,18 +32,43 @@ public class Disciplina {
     private Double media;
 
     /**
-     * Controi uma Disciplina a partir de seu nome.
+     * Constrói uma Disciplina a partir de seu nome.
      * 
      * @param nomeDisciplina Nome da Disciplina
      */
     public Disciplina(String nomeDisciplina) {
+        this(nomeDisciplina, 4);
+    }
+
+    /**
+     * Constrói uma Disciplina a partir de seu nome e da quantidade de notas.
+     * 
+     * @param nomeDisciplina Nome da Disciplina
+     * @param numNotas Quantidade de Notas da Disciplina
+     */
+    public Disciplina(String nomeDisciplina, int numNotas) {
         this.nomeDisciplina = nomeDisciplina;
-        this.notas = new Double[4];
+        this.notas = new Double[numNotas];
+        this.horasDeEstudo = 0;
+        this.media = 0.0;
+        int[] pesos = {1, 1, 1, 1};
+        this.pesos = pesos;
+    }
+
+    /**
+     * Constrói uma Disciplina a partir de seu nome e da quantidade de notas com seus respectivos pesos.
+     * O tamanho da Array dos pesos deve ser igual a quantidade de notas.
+     * 
+     * @param nomeDisciplina Nome da Disciplina
+     * @param numNotas Quantidade de Notas da Disciplina
+     * @param pesoNotas Array com os Pesos de cada nota
+     */
+    public Disciplina(String nomeDisciplina, int numNotas, int[] pesoNotas) {
+        this(nomeDisciplina, numNotas);
         for (int i = 0; i < this.notas.length; i++) {
             this.notas[i] = 0.0;
         }
-        this.horasDeEstudo = 0;
-        this.media = 0.0;
+        this.pesos = pesoNotas;
     }
 
     /**
@@ -51,12 +79,14 @@ public class Disciplina {
      */
     private void atualizarMedia() {
         Double somatorioNotas = 0.0;
+        int somatorioPesos = 0;
 
         for (int i = 0; i < this.notas.length; i++) {
-            somatorioNotas += this.notas[i];
+            somatorioNotas += this.notas[i] * this.pesos[i];
+            somatorioPesos += this.pesos[i];
         }
 
-        this.media = somatorioNotas / this.notas.length;
+        this.media = somatorioNotas / somatorioPesos;
     }
 
     /**
