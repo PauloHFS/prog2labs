@@ -1,6 +1,6 @@
 package br.ufcg.coisa.repositorios;
 
-import br.ufcg.coisa.models.utils.Lanche;
+import br.ufcg.coisa.entidades.Lanche;
 
 //TODO: Documentar
 /**

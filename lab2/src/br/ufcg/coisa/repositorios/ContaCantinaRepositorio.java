@@ -2,7 +2,7 @@ package br.ufcg.coisa.repositorios;
 
 import java.util.ArrayList;
 
-import br.ufcg.coisa.models.ContaCantina;
+import br.ufcg.coisa.entidades.ContaCantina;
 
 //TODO: Documentar
 public class ContaCantinaRepositorio {

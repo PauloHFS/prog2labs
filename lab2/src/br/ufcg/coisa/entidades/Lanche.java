@@ -1,4 +1,4 @@
-package br.ufcg.coisa.models.utils;
+package br.ufcg.coisa.entidades;
 
 //TODO: Documentar
 /**

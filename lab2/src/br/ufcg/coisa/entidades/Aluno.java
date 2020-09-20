@@ -1,4 +1,4 @@
-package br.ufcg.coisa.models;
+package br.ufcg.coisa.entidades;
 
 import br.ufcg.coisa.repositorios.*;
 
@@ -27,6 +27,11 @@ public class Aluno {
         this.contasLaboratorios = new ContaLaboratorioRepositorio();
         this.contasCantinas = new ContaCantinaRepositorio();
         this.saude = new Saude();
+    }
+
+    // TODO: Documentar
+    public String getNome() {
+        return this.nome;
     }
 
     // TODO: Documentar

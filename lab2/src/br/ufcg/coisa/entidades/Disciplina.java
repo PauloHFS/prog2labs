@@ -1,4 +1,4 @@
-package br.ufcg.coisa.models;
+package br.ufcg.coisa.entidades;
 
 /**
  * Representação de uma Disciplina.

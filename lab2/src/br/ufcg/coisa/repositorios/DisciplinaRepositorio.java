@@ -2,7 +2,7 @@ package br.ufcg.coisa.repositorios;
 
 import java.util.ArrayList;
 
-import br.ufcg.coisa.models.Disciplina;
+import br.ufcg.coisa.entidades.Disciplina;
 
 //TODO: Documentar
 public class DisciplinaRepositorio {

@@ -2,7 +2,7 @@ package br.ufcg.coisa.repositorios;
 
 import java.util.ArrayList;
 
-import br.ufcg.coisa.models.ContaLaboratorio;
+import br.ufcg.coisa.entidades.ContaLaboratorio;
 
 //TODO: Documentar
 public class ContaLaboratorioRepositorio {
