@@ -1,4 +1,6 @@
-package br.ufcg.coisa;
+package br.ufcg.coisa.utils;
+
+import br.ufcg.coisa.*;
 
 public class Coisa {
 

@@ -1,9 +1,9 @@
 package br.ufcg.coisa;
 
+import br.ufcg.coisa.repositorios.LancheRepositorio;
+
 /**
  * Representação de um Conta em uma Cantina.
- * 
- * TODO: Adicionar descrições nos lanches.
  * 
  * @author Paulo Hernane Fontes e Silva
  */
@@ -30,6 +30,11 @@ public class ContaCantina {
     private Integer numItensComprados;
 
     /**
+     * Repositório que armazena os lanches feitos na cantina.
+     */
+    private LancheRepositorio lanches;
+
+    /**
      * Constrói uma Conta na Cantina a partir do nome da cantina.
      * 
      * @param nomeCantina Nome da Cantina em que a conta irá ser criada
@@ -39,6 +44,20 @@ public class ContaCantina {
         this.valorDivida = 0;
         this.valorDividaHistorica = 0;
         this.numItensComprados = 0;
+        this.lanches = new LancheRepositorio();
+    }
+
+    //TODO: Documentar
+    /**
+     * @param qtdItens
+     * @param valorCentavos
+     * @param detalhes
+     */
+    public void cadastraLanche(int qtdItens, int valorCentavos, String detalhes) {
+        this.lanches.cadastraLanche(qtdItens, valorCentavos, detalhes);
+        this.numItensComprados += qtdItens;
+        this.valorDivida += valorCentavos;
+        this.valorDividaHistorica += valorCentavos;
     }
 
     /**
@@ -49,9 +68,7 @@ public class ContaCantina {
      * @param valorCentavos Valor da venda
      */
     public void cadastraLanche(int qtdItens, int valorCentavos) {
-        this.numItensComprados += qtdItens;
-        this.valorDivida += valorCentavos;
-        this.valorDividaHistorica += valorCentavos;
+        this.cadastraLanche(qtdItens, valorCentavos, null);
     }
 
     /**
@@ -72,6 +89,14 @@ public class ContaCantina {
      */
     public int getFaltaPagar() {
         return this.valorDivida;
+    }
+
+    //TODO: Documentar
+    /**
+     * @return
+     */
+    public String listarDetalhes() {
+        return this.lanches.toString();
     }
 
     /**

@@ -3,8 +3,6 @@ package br.ufcg.coisa;
 /**
  * Representação da Saúde do Aluno.
  * 
- * TODO: Adicionar EMOJI a descrição da saúde.
- * 
  * @author Paulo Hernane Fontes e Silva
  */
 public class Saude {
@@ -20,11 +18,18 @@ public class Saude {
     private String saudeFisica;
 
     /**
+     * Emoji que descreve a sensação geral do Aluno.
+     */
+    private String emoji;
+
+    //TODO: atualizar documentação
+    /**
      * Constrói o objeto Saúde com a Saúde Mental e Fisica por padrão "boas".
      */
     public Saude() {
         this.saudeMental = "boa";
         this.saudeFisica = "boa";
+        this.emoji = null;
     }
 
     /**
@@ -35,6 +40,7 @@ public class Saude {
     public void defineSaudeMental(String valor) {
         if (valor.equals("boa") || valor.equals("fraca")) {
             this.saudeMental = valor;
+            this.emoji = null;
         }
     }
 
@@ -46,9 +52,19 @@ public class Saude {
     public void defineSaudeFisica(String valor) {
         if (valor.equals("boa") || valor.equals("fraca")) {
             this.saudeFisica = valor;
+            this.emoji = null;
         }
     }
 
+    //TODO: Documentar
+    /**
+     * @param valor
+     */
+    void definirEmoji(String valor) {
+        this.emoji = valor;
+    }
+
+    //TODO: atualizar Documentação
     /**
      * Retorna a atual situação da Saúde Geral do aluno.
      * 
@@ -57,13 +73,21 @@ public class Saude {
      *         "fraca"
      */
     public String getStatusGeral() {
+        String statusGeralString;
+        
         if (this.saudeMental == "boa" && this.saudeFisica == "boa") {
-            return "boa";
+            statusGeralString = "boa";
         } else if (this.saudeMental == "fraca" && this.saudeFisica == "fraca") {
-            return "fraca";
+            statusGeralString = "fraca";
         } else {
-            return "ok";
+            statusGeralString = "ok";
         }
+
+        if (this.emoji != null) {
+            statusGeralString += " " + this.emoji;
+        }
+        
+        return statusGeralString;
     }
 
 }
