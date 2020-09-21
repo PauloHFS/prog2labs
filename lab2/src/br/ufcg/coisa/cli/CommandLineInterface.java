@@ -49,10 +49,10 @@ public class CommandLineInterface {
                     if (cmd[1].equals("laboratorio")) {
                         alunos.cadastraLaboratorio(alunoLogado.getNome(), cmd[2], Integer.parseInt(cmd[3]));
                     } else {
-                        feedback = "     Argumentos incorretos (ajuda cadastro)\n";
+                        feedback = "     Argumentos incorretos\n";
                     }
                 } else {
-                    feedback = "     Argumentos incorretos (ajuda cadastro)\n";
+                    feedback = "     Argumentos incorretos\n";
                 }
 
             } else if (cmd[0].equals("login") && cmd.length == 2) {
@@ -72,14 +72,14 @@ public class CommandLineInterface {
                         if (cmd[3].equals("boa") || cmd[3].equals("fraca")) {
                             alunos.defineSaudeMental(alunoLogado.getNome(), cmd[3]);
                         } else {
-                            feedback = "    Valor incorreto para Saude. (boa/fraca)\n";
+                            feedback = "    Valor incorreto para Saude. = boa ou fraca\n";
                         }
 
                     } else if (cmd[2].equals("fisica")) {
                         if (cmd[3].equals("boa") || cmd[3].equals("fraca")) {
                             alunos.defineSaudeFisica(alunoLogado.getNome(), cmd[3]);
                         } else {
-                            feedback = "    Valor incorreto para Saude. (boa/fraca)\n";
+                            feedback = "    Valor incorreto para Saude. = boa ou fraca\n";
                         }
 
                     } else if (cmd[2].equals("emoji")) {

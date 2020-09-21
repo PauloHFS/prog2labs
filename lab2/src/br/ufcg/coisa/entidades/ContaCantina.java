@@ -47,15 +47,25 @@ public class ContaCantina {
         this.lanches = new LancheRepositorio();
     }
 
+    /**
+     * Retorna o o nome da Cantina a qual pertence a Conta
+     * 
+     * @return O nome da Cantina
+     */
     public String getNomeCantina() {
         return this.nomeCantina;
     }
 
-    // TODO: Documentar
     /**
-     * @param qtdItens
-     * @param valorCentavos
-     * @param detalhes
+     * Cadastra um novo Lanche na Cantina a partir da Quantidade de Itens, o Valor
+     * do Lanche e seus Detalhes.
+     * 
+     * @param qtdItens      Quantidade de Itens do Lanche
+     * @param valorCentavos Valor Total em centavos do Lanche
+     * @param detalhes      Detalhes do Lanche
+     * 
+     * @see br.ufcg.coisa.repositorios.LancheRepositorio#cadastraLanche(int, int,
+     *      String)
      */
     public void cadastraLanche(int qtdItens, int valorCentavos, String detalhes) {
         this.lanches.cadastraLanche(qtdItens, valorCentavos, detalhes);
@@ -70,6 +80,8 @@ public class ContaCantina {
      * 
      * @param qtdItens      Quantidade de itens vendidos
      * @param valorCentavos Valor da venda
+     * 
+     * @see br.ufcg.coisa.entidades.ContaCantina#cadastraLanche(int, int, String)
      */
     public void cadastraLanche(int qtdItens, int valorCentavos) {
         this.cadastraLanche(qtdItens, valorCentavos, null);
@@ -95,9 +107,11 @@ public class ContaCantina {
         return this.valorDivida;
     }
 
-    // TODO: Documentar
     /**
-     * @return
+     * Retorna os detalhes dos ultimos Lanches cadastrados.
+     * 
+     * @return Os detalhes em String dos Lanches
+     * @see br.ufcg.coisa.repositorios.LancheRepositorio#toString()
      */
     public String listarDetalhes() {
         return this.lanches.toString();

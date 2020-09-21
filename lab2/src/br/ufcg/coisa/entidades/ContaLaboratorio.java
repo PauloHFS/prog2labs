@@ -44,7 +44,11 @@ public class ContaLaboratorio {
         this(nomeLaboratorio, 2000);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna o nome do Laboratório.
+     * 
+     * @return O nome do Laboratório em String
+     */
     public String getNomeLaboratorio() {
         return this.nomeLaboratorio;
     }

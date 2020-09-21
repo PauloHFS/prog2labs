@@ -22,9 +22,9 @@ public class Saude {
      */
     private String emoji;
 
-    // TODO: atualizar documentação
     /**
-     * Constrói o objeto Saúde com a Saúde Mental e Fisica por padrão "boas".
+     * Constrói o objeto Saúde com a Saúde Mental e Fisica por padrão "boas" e sem
+     * emoji.
      */
     public Saude() {
         this.saudeMental = "boa";
@@ -34,6 +34,9 @@ public class Saude {
 
     /**
      * Atualiza a atual situação da Saúde Mental do Aluno.
+     * 
+     * Como a situação mudou o Emoji deve ser atualizado pois acredita-se que o
+     * anterior não representa mais a situação do aluno.
      * 
      * @param valor Situação da Saúde Mental, deve ser "boa" ou "fraca"
      */
@@ -47,6 +50,9 @@ public class Saude {
     /**
      * Atualiza a atual situação da Saúde Fisica do Aluno.
      * 
+     * Como a situação mudou o Emoji deve ser atualizado pois acredita-se que o
+     * anterior não representa mais a situação do aluno.
+     * 
      * @param valor Situação da Saúde Fisica, deve ser "boa" ou "fraca"
      */
     public void defineSaudeFisica(String valor) {
@@ -56,21 +62,21 @@ public class Saude {
         }
     }
 
-    // TODO: Documentar
     /**
-     * @param valor
+     * Defini o emoji representante da situação do aluno.
+     * 
+     * @param valor Emoji
      */
     void definirEmoji(String valor) {
         this.emoji = valor;
     }
 
-    // TODO: atualizar Documentação
     /**
      * Retorna a atual situação da Saúde Geral do aluno.
      * 
      * @return "boa" - se a saúde Mental e Fisica está boa, "ok" - se a saúde Mental
      *         ou Fisica está "boa" e a outra "fraca", "fraca" - se ambas estiverem
-     *         "fraca"
+     *         "fraca", se houver um Emoji ele será apresentado
      */
     public String getStatusGeral() {
         String statusGeralString;

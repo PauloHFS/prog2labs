@@ -72,7 +72,11 @@ public class Disciplina {
         this.pesos = pesoNotas;
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna o nome da Disciplina.
+     * 
+     * @return O nome da Disciplina
+     */
     public String getNomeDisciplina() {
         return this.nomeDisciplina;
     }
@@ -140,7 +144,6 @@ public class Disciplina {
         return this.media >= 7;
     }
 
-    // FIXME: Arrumar uma solução para printar as notas
     /**
      * Retorna uma representação em String de Disciplina. O padrão é: {Nome da
      * Disciplina} {Horas de Estudo} {Média} {Notas}.
@@ -150,6 +153,14 @@ public class Disciplina {
      */
     @Override
     public String toString() {
-        return this.nomeDisciplina + " " + this.horasDeEstudo + " " + this.media + " " + this.notas;
+        String notasString = "[";
+        for (int i = 0; i < this.notas.length; i++) {
+            if (i == this.notas.length - 1) {
+                notasString += this.notas[i] + "]";
+            } else {
+                notasString += this.notas[i] + ", ";
+            }
+        }
+        return this.nomeDisciplina + " " + this.horasDeEstudo + " " + this.media + " " + notasString;
     }
 }
