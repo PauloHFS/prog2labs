@@ -4,24 +4,42 @@ import java.util.ArrayList;
 
 import br.ufcg.coisa.entidades.Aluno;
 
-//TODO: Documentar
+/**
+ * Repositório de Alunos.
+ * 
+ * @author Paulo Hernane Fontes e Silva
+ * @see br.ufcg.coisa.entidades.Aluno
+ */
 public class AlunoRepositorio {
 
-    // TODO: Documentar
+    /**
+     * Array que armazena os Alunos.
+     */
     private ArrayList<Aluno> alunos;
 
-    // TODO: Documentar
+    /**
+     * Contrói um Repositório de Alunos vazio.
+     */
     public AlunoRepositorio() {
         this.alunos = new ArrayList<Aluno>();
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastra um novo Aluno no Repositório.
+     * 
+     * @param nomeAluno Nome do Aluno
+     */
     public void cadastrarAluno(String nomeAluno) {
         Aluno aluno = new Aluno(nomeAluno);
         this.alunos.add(aluno);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna o Aluno desejado com base no seu Nome.
+     * 
+     * @param nomeAluno Nome do Aluno Desejado
+     * @return Aluno desejado, null se não estiver cadastrado no repositório
+     */
     public Aluno getAluno(String nomeAluno) {
         Aluno aluno = null;
 
@@ -34,41 +52,86 @@ public class AlunoRepositorio {
         return aluno;
     }
 
-    // TODO: Documentar
+    /**
+     * Verifica se há Alunos cadastrados no Repositório.
+     * 
+     * @return true se tiver algum Aluno cadastrado, false se não
+     */
     public boolean haAlunosCadastrados() {
         return this.alunos.size() != 0;
     }
 
     // TODO: Documentar
+    // FIXME: Refatorar para o getAluno
     public boolean temAluno(String nomeAluno) {
         return this.getAluno(nomeAluno) != null;
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastrar um novo Laboratório com a Cota Padrão no Repositório.
+     * 
+     * @param nomeAluno       Nome do Aluno
+     * @param nomeLaboratorio Nome do Laboratório
+     * @see br.ufcg.coisa.entidades.Aluno#cadastraLaboratorio(String)
+     */
     public void cadastraLaboratorio(String nomeAluno, String nomeLaboratorio) {
         Aluno aluno = this.getAluno(nomeAluno);
-        aluno.cadastraLaboratorio(nomeLaboratorio);
+        if (aluno != null) {
+            aluno.cadastraLaboratorio(nomeLaboratorio);
+        }
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastrar um novo Laboratório com um Cota personalizada no Repositório.
+     * 
+     * @param nomeAluno       Nome do Aluno
+     * @param nomeLaboratorio Nome do Laboratório
+     * @param cota            Cota do Laboratório em MEGAbytes
+     * @see br.ufcg.coisa.entidades.Aluno#cadastraLaboratorio(String, int)
+     */
     public void cadastraLaboratorio(String nomeAluno, String nomeLaboratorio, int cota) {
         Aluno aluno = this.getAluno(nomeAluno);
-        aluno.cadastraLaboratorio(nomeLaboratorio, cota);
+        if (aluno != null) {
+            aluno.cadastraLaboratorio(nomeLaboratorio, cota);
+        }
     }
 
-    // TODO: Documentar
+    /**
+     * Consome Espaço no Laborátorio.
+     * 
+     * @param nomeAluno       Nome do Aluno
+     * @param nomeLaboratorio Nome do Laboratório
+     * @param mbytes          Espaço consumido em MEGAbytes
+     * @see br.ufcg.coisa.entidades.Aluno#consomeEspaco(String, int)
+     */
     public void consomeEspaco(String nomeAluno, String nomeLaboratorio, int mbytes) {
         Aluno aluno = this.getAluno(nomeAluno);
-        aluno.consomeEspaco(nomeLaboratorio, mbytes);
+        if (aluno != null) {
+            aluno.consomeEspaco(nomeLaboratorio, mbytes);
+        }
     }
 
-    // TODO: Documentar
+    /**
+     * Liberar Espaço no Laboratório.
+     * 
+     * @param nomeAluno       Nome do Aluno
+     * @param nomeLaboratorio Nome do Laboratório
+     * @param mbytes          Espaço a ser liberado em MEGAbytes
+     * @see br.ufcg.coisa.entidades.Aluno#liberaEspaco(String, int)
+     */
     public void liberaEspaco(String nomeAluno, String nomeLaboratorio, int mbytes) {
         Aluno aluno = this.getAluno(nomeAluno);
-        aluno.liberaEspaco(nomeLaboratorio, mbytes);
+        if (aluno != null) {
+            aluno.liberaEspaco(nomeLaboratorio, mbytes);
+        }
     }
 
     // TODO: Documentar
+    /**
+     * 
+     * 
+     * @return True se o aluno atingiu a a cota do laboratorio
+     */
     public boolean atingiuCota(String nomeAluno, String nomeLaboratorio) {
         Aluno aluno = this.getAluno(nomeAluno);
         return aluno.atingiuCota(nomeLaboratorio);
@@ -157,7 +220,12 @@ public class AlunoRepositorio {
         aluno.defineSaudeEmoji(emoji);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna o Status Geral do Aluno
+     * 
+     * @param nomeAluno Nome do Aluno
+     * @return
+     */
     public String getStatusGeral(String nomeAluno) {
         Aluno aluno = this.getAluno(nomeAluno);
         return aluno.getStatusGeral();
