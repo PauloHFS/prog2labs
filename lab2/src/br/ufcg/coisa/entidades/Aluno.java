@@ -9,18 +9,32 @@ import br.ufcg.coisa.repositorios.*;
  */
 public class Aluno {
 
-    // TODO: Documentar
+    /**
+     * Nome do Aluno.
+     */
     private String nome;
-    // TODO: Documentar
+    /**
+     * Disciplinas do Aluno.
+     */
     private DisciplinaRepositorio disciplinas;
-    // TODO: Documentar
+    /**
+     * Contas de Laboratório do Aluno.
+     */
     private ContaLaboratorioRepositorio contasLaboratorios;
-    // TODO: Documentar
+    /**
+     * Contas nas Cantinas do Aluno.
+     */
     private ContaCantinaRepositorio contasCantinas;
-    // TODO: Documentar
+    /**
+     * Saúde do Aluno.
+     */
     private Saude saude;
 
-    // TODO: Documentar
+    /**
+     * Constrói um novo Aluno.
+     * 
+     * @param nome Nome do Aluno
+     */
     public Aluno(String nome) {
         this.nome = nome;
         this.disciplinas = new DisciplinaRepositorio();
@@ -29,121 +43,206 @@ public class Aluno {
         this.saude = new Saude();
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna o nome do Aluno.
+     * 
+     * @return o nome do Aluno
+     */
     public String getNome() {
         return this.nome;
     }
 
-    // TODO: Documentar
     /**
+     * Cadastra uma conta de Laboratório.
      * 
-     * @param nomeLaboratorio
+     * @param nomeLaboratorio Nome do Laboratorio
      */
     public void cadastraLaboratorio(String nomeLaboratorio) {
         this.contasLaboratorios.cadastrarLaboratorio(nomeLaboratorio);
     }
 
-    // TODO: Documentar
     /**
+     * Cadastra uma conta de Laboratório.
      * 
-     * @param nomeLaboratorio
-     * @param cota
+     * @param nomeLaboratorio Nome do Laboratório
+     * @param cota            Cota do laboratório
      */
     public void cadastraLaboratorio(String nomeLaboratorio, int cota) {
         this.contasLaboratorios.cadastrarLaboratorio(nomeLaboratorio, cota);
     }
 
-    // TODO: Documentar
     /**
+     * Consome espaço no laboratorio.
      * 
-     * @param nomeLaboratorio
-     * @param mbytes
+     * @param nomeLaboratorio Nome do Laboratório
+     * @param mbytes          Espaço consumido
      */
     public void consomeEspaco(String nomeLaboratorio, int mbytes) {
         this.contasLaboratorios.consomeEspaco(nomeLaboratorio, mbytes);
     }
 
-    // TODO: Documentar
+    /**
+     * Libera espaço no laboratorio.
+     * 
+     * @param nomeLaboratorio Nome do Laboratorio
+     * @param mbytes          Espaço liberado
+     */
     public void liberaEspaco(String nomeLaboratorio, int mbytes) {
         this.contasLaboratorios.liberaEspaco(nomeLaboratorio, mbytes);
     }
 
-    // TODO: Documentar
+    /**
+     * Verifica se o Aluno atingiu a cota no Laboratorio.
+     * 
+     * @param nomeLaboratorio Nome do Laboratorio
+     * @return true se atingiu a cota, false se não atingiu.
+     */
     public boolean atingiuCota(String nomeLaboratorio) {
         return this.contasLaboratorios.atingiuCota(nomeLaboratorio);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna a representação do Laboratorio em String.
+     * 
+     * @param nomeLaboratorio Nome do Laboratorio
+     * @return a representação do Laboratorio em String
+     */
     public String laboratorioToString(String nomeLaboratorio) {
         return this.contasLaboratorios.laboratorioToString(nomeLaboratorio);
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastra uma Disciplina.
+     * 
+     * @param nomeDisciplina Nome da Disciplina
+     */
     public void cadastraDisciplina(String nomeDisciplina) {
         this.disciplinas.cadastrarDisciplina(nomeDisciplina);
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastra horas de estudo em uma Disciplina.
+     * 
+     * @param nomeDisciplina Nome da Disciplina
+     * @param horas          Quantidade de horas
+     */
     public void cadastraHoras(String nomeDisciplina, int horas) {
         this.disciplinas.cadastrarHoras(nomeDisciplina, horas);
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastra nota em uma disciplina.
+     * 
+     * @param nomeDisciplina Nome da Disciplina
+     * @param nota           Nota a ser cadastrada
+     * @param valorNota      Valor da nota
+     */
     public void cadastraNota(String nomeDisciplina, int nota, double valorNota) {
         this.disciplinas.cadastrarNota(nomeDisciplina, nota, valorNota);
     }
 
-    // TODO: Documentar
+    /**
+     * Verifica se o Aluno foi aprovado na disciplina.
+     * 
+     * @param nomeDisciplina Nome da Disciplina
+     * @return true se o aluno for aprovado, false se não.
+     */
     public boolean aprovado(String nomeDisciplina) {
         return this.disciplinas.aprovado(nomeDisciplina);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna a representação da Disciplina em String.
+     * 
+     * @param nomeDisciplina Nome da Disciplina
+     * @return a representação da Disciplina em String
+     */
     public String disciplinaToString(String nomeDisciplina) {
         return this.disciplinas.disciplinaToString(nomeDisciplina);
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastra uma nova ContaCantina.
+     * 
+     * @param nomeCantina Nome da Cantina
+     */
     public void cadastraCantina(String nomeCantina) {
         this.contasCantinas.cadastrarCantina(nomeCantina);
     }
 
-    // TODO: Documentar
+    /**
+     * Cadastra um Lanche em uma Cantina.
+     * 
+     * @param nomeCantina   Nome da Cantina
+     * @param qtdItens      Quantidade de Itens
+     * @param valorCentavos Valor do Lanche em centavos
+     */
     public void cadastraLanche(String nomeCantina, int qtdItens, int valorCentavos) {
         this.contasCantinas.cadastrarLanche(nomeCantina, qtdItens, valorCentavos);
     }
 
-    // TODO: Documentar
+    /**
+     * Efetua o pagamento de um debito em uma Cantina.
+     * 
+     * @param nomeCantina   Nome da Cantina
+     * @param valorCentavos Valor pago
+     */
     public void pagarConta(String nomeCantina, int valorCentavos) {
         this.contasCantinas.pagarConta(nomeCantina, valorCentavos);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna o valor do débito na Cantina.
+     * 
+     * @param nomeCantina Nome da Cantina
+     * @return O valor do débito
+     */
     public int getFaltaPagar(String nomeCantina) {
         return this.contasCantinas.getFaltaPagar(nomeCantina);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna a representação da Cantina em String.
+     * 
+     * @param nomeCantina Nome da Cantina
+     * @return a representação da Cantina em String
+     */
     public String cantinaToString(String nomeCantina) {
         return this.contasCantinas.cantinaToString(nomeCantina);
     }
 
-    // TODO: Documentar
+    /**
+     * Define a situação da Saude Mental do Aluno.
+     * 
+     * @param valor situação da saude (boa ou fraca)
+     */
     public void defineSaudeMental(String valor) {
         this.saude.defineSaudeMental(valor);
     }
 
-    // TODO: Documentar
+    /**
+     * Define a situação da saude fisica do Aluno.
+     * 
+     * @param valor situação da saude (boa ou fraca)
+     */
     public void defineSaudeFisica(String valor) {
         this.saude.defineSaudeFisica(valor);
     }
 
-    // TODO: Documentar
+    /**
+     * Define o Emoji que representa a situação da Saude do aluno.
+     * 
+     * @param emoji Emoji
+     */
     public void defineSaudeEmoji(String emoji) {
         this.saude.definirEmoji(emoji);
     }
 
-    // TODO: Documentar
+    /**
+     * Retorna o Status Geral do Aluno.
+     * 
+     * @return o status geral do aluno
+     */
     public String getStatusGeral() {
         return this.saude.getStatusGeral();
     }
