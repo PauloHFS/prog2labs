@@ -40,11 +40,24 @@ public class Contato {
 	 * @param contatoWhatsApp Identificador do número de telefone do contato do WhatsApp.
 	 */
 	public Contato(String nome, String sobrenome, String[] numerosTelefone, int telefonePrioritario, int contatoWhatsApp) {
-		this.nome = nome;
-		this.sobrenome = sobrenome;
-		this.numerosTelefone = numerosTelefone;
-		this.telefonePrioritario = telefonePrioritario;
-		this.contatoWhatsApp = contatoWhatsApp;
+		if (nome == null) {
+			throw new NullPointerException("Nome nulo!");
+		} else if (sobrenome == null) {
+			throw new NullPointerException("Sobrenome nulo!");
+		} else if (numerosTelefone == null) {
+			throw new NullPointerException("Telefones nulos!");
+		} else if (nome.equals("") || nome.equals(" ") || nome.equals("   ")) {
+			throw new IllegalArgumentException("O Nome não pode ser vazio!");
+		} else if (sobrenome.equals("") || sobrenome.equals("  ") || sobrenome.equals("   ")) {
+			throw new IllegalArgumentException("O Sobrenome não pode ser vazio!");
+		} else {	
+			
+			this.nome = nome;
+			this.sobrenome = sobrenome;
+			this.numerosTelefone = numerosTelefone;
+			this.telefonePrioritario = telefonePrioritario;
+			this.contatoWhatsApp = contatoWhatsApp;
+		}
 	}
 	
 	/**

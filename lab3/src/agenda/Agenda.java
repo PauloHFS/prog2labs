@@ -30,10 +30,17 @@ public class Agenda {
 	/**
 	 * Acessa os dados de um contato específico.
 	 * @param posicao Posição do contato na agenda.
-	 * @return Dados do contato. Null se não há contato na posição.
+	 * @return Dados do contato. Null se não há contato na posição. 
 	 */
 	public Contato getContato(int posicao) {
-		return contatos[posicao];
+		Contato contato;
+		try {
+			contato = this.contatos[posicao-1];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new ArrayIndexOutOfBoundsException("Index " + posicao + " não está dentro dos limites da Agenda! [1,100]");
+		} 
+		return contato;			
+		
 	}
 
 	/**
@@ -69,12 +76,16 @@ public class Agenda {
 	 * @param posicao Posição do contato.
 	 * @param nome Nome do contato.
 	 * @param sobrenome Sobrenome do contato.
-	 * @param numerosTelefones Array dos números dos telefones.
+	 * @param numerosTelefone Array dos números dos telefones.
 	 * @param telefonePrioritario Identificador do número prioritário.
 	 * @param contatoWhatsApp Identificador do número do contato do WhatsApp.
 	 */
 	public void cadastraContato(int posicao, String nome, String sobrenome, String[] numerosTelefone, int telefonePrioritario, int contatoWhatsApp) {
-		this.contatos[posicao] = new Contato(nome, sobrenome, numerosTelefone, telefonePrioritario, contatoWhatsApp);
+		try {
+			this.contatos[posicao-1] = new Contato(nome, sobrenome, numerosTelefone, telefonePrioritario, contatoWhatsApp);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new ArrayIndexOutOfBoundsException("Index " + posicao + " não está dentro dos limites da Agenda! [1,"+Agenda.TAMANHO_AGENDA+"]");
+		}
 	}
 
 }

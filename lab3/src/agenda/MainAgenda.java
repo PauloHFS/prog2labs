@@ -31,7 +31,11 @@ public class MainAgenda {
 		String escolha = "";
 		while (true) {
 			escolha = menu(scanner);
-			comando(escolha, agenda, scanner);
+			try {				
+				comando(escolha, agenda, scanner);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -62,8 +66,9 @@ public class MainAgenda {
 	 * @param opcao   Opção digitada.
 	 * @param agenda  A agenda que estamos manipulando.
 	 * @param scanner Objeto scanner para o caso do comando precisar de mais input.
+	 * @throws IllegalAccessException 
 	 */
-	private static void comando(String opcao, Agenda agenda, Scanner scanner) {
+	private static void comando(String opcao, Agenda agenda, Scanner scanner) throws IllegalAccessException {
 		switch (opcao) {
 		case "C":
 			cadastraContato(agenda, scanner);
@@ -114,7 +119,7 @@ public class MainAgenda {
 		Contato[] contatos = agenda.getContatos();
 		for (int i = 0; i < contatos.length; i++) {
 			if (contatos[i] != null) {
-				System.out.println(formataContato(i, contatos[i].getNomeCompleto()));
+				System.out.println(formataContato(i+1, contatos[i].getNomeCompleto()));
 			}
 		}
 	}
@@ -124,8 +129,9 @@ public class MainAgenda {
 	 * 
 	 * @param agenda A agenda.
 	 * @param scanner Scanner para capturar qual contato.
+	 * @throws IllegalAccessException 
 	 */
-	private static void exibeContato(Agenda agenda, Scanner scanner) {
+	private static void exibeContato(Agenda agenda, Scanner scanner) throws IllegalAccessException {
 		System.out.print("\nQual contato> ");
 		int posicao = Integer.parseInt(scanner.nextLine());
 		Contato contato = agenda.getContato(posicao);
