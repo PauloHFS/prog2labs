@@ -10,20 +10,20 @@ public class Agenda {
 	
 	private static final int TAMANHO_AGENDA = 100;
 	
-	private String[] contatos;
+	private Contato[] contatos;
 
 	/**
 	 * Cria uma agenda.
 	 */
 	public Agenda() {
-		this.contatos = new String[TAMANHO_AGENDA];
+		this.contatos = new Contato[TAMANHO_AGENDA];
 	}
 	
 	/**
 	 * Acessa a lista de contatos mantida.
 	 * @return O array de contatos.
 	 */
-	public String[] getContatos() {
+	public Contato[] getContatos() {
 		return this.contatos.clone();
 	}
 
@@ -32,7 +32,7 @@ public class Agenda {
 	 * @param posicao Posição do contato na agenda.
 	 * @return Dados do contato. Null se não há contato na posição.
 	 */
-	public String getContato(int posicao) {
+	public Contato getContato(int posicao) {
 		return contatos[posicao];
 	}
 
@@ -40,9 +40,13 @@ public class Agenda {
 	 * Cadastra um contato em uma posição. Um cadastro em uma posição que já existe sobrescreve o anterior. 
 	 * @param posicao Posição do contato.
 	 * @param nome Nome do contato.
+	 * @param sobrenome Sobrenome do contato.
+	 * @param numerosTelefones Array dos números dos telefones.
+	 * @param telefonePrioritario Identificador do número prioritário.
+	 * @param contatoWhatsApp Identificador do número do contato do WhatsApp.
 	 */
-	public void cadastraContato(int posicao, String nome) {
-		this.contatos[posicao] = nome;
+	public void cadastraContato(int posicao, String nome, String sobrenome, String[] numerosTelefone, int telefonePrioritario, int contatoWhatsApp) {
+		this.contatos[posicao] = new Contato(nome, sobrenome, numerosTelefone, telefonePrioritario, contatoWhatsApp);
 	}
 
 }

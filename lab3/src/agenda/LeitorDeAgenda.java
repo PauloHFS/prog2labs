@@ -15,7 +15,12 @@ public class LeitorDeAgenda {
 
 	private static final int COLUNA_POSICAO = 0;
 	private static final int COLUNA_NOME = 1;
-
+	private static final int COLUNA_SOBRENOME = 2;
+	private static final int COLUNA_TELEFONE1 = 3;
+	private static final int COLUNA_TELEFONE2 = 4;
+	private static final int COLUNA_TELEFONE3 = 5;
+	private static final int COLUNA_TELEFONEPRIORITARIO = 6;
+	private static final int COLUNA_CONTATOWHATSAPP = 7;
 
 	/**
 	 * Lê contatos de um arquivo CSV e os coloca em uma agenda.
@@ -37,6 +42,7 @@ public class LeitorDeAgenda {
 					continue;
 				}
 				String[] campos = linha.split(",");
+				//System.out.println(campos[0]+" "+campos[1]+" "+campos[2]+" "+campos[3]+" "+campos[4]+" "+campos[5]+" "+campos[6]+" "+campos[7]);
 				processaLinhaCsvContatos(campos, agenda);
 			}
 		}
@@ -54,8 +60,15 @@ public class LeitorDeAgenda {
 	private void processaLinhaCsvContatos(String[] campos, Agenda agenda) {
 		int posicao = Integer.parseInt(campos[COLUNA_POSICAO]);
 		String nome = campos[COLUNA_NOME].trim();
-
-		agenda.cadastraContato(posicao, nome);
+		String sobrenome = campos[COLUNA_SOBRENOME].trim();
+		String[] telefones = new String[3];
+		telefones[0] = campos[COLUNA_TELEFONE1].trim();
+		telefones[1] = campos[COLUNA_TELEFONE2].trim();
+		telefones[2] = campos[COLUNA_TELEFONE3].trim();
+		int telefonePrioritario = Integer.parseInt(campos[COLUNA_TELEFONEPRIORITARIO].trim());
+		int contatoWhatsApp = Integer.parseInt(campos[COLUNA_CONTATOWHATSAPP].trim());
+		//System.out.println(posicao +" "+ nome +" "+ sobrenome +" "+ telefones +" "+ telefonePrioritario +" "+contatoWhatsApp);
+		agenda.cadastraContato(posicao, nome, sobrenome, telefones, telefonePrioritario, contatoWhatsApp);
 	}
 
 }

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Interface com menus texto para manipular uma agenda de contatos.
+ * Interface cod menus texto para manipular uma agenda de contatos.
  * 
  * @author nazarenoandrade
  *
@@ -48,10 +48,12 @@ public class MainAgenda {
 						"(C)adastrar Contato\n" + 
 						"(L)istar Contatos\n" + 
 						"(E)xibir Contato\n" + 
+						"(T)elefones preferidos" +
+						"(Z)aps" +
 						"(S)air\n" + 
 						"\n" + 
 						"Opção> ");
-		return scanner.next().toUpperCase();
+		return scanner.nextLine().toUpperCase();
 	}
 
 	/**
@@ -72,6 +74,12 @@ public class MainAgenda {
 		case "E":
 			exibeContato(agenda, scanner);
 			break;
+		case "T":
+			//exibeTelefonesPreferidos();
+			break;
+		case "Z":
+			//exibeContatosWhatsApp();
+			break;
 		case "S":
 			sai();
 			break;
@@ -87,10 +95,10 @@ public class MainAgenda {
 	 */
 	private static void listaContatos(Agenda agenda) {
 		System.out.println("\nLista de contatos: ");
-		String[] contatos = agenda.getContatos();
+		Contato[] contatos = agenda.getContatos();
 		for (int i = 0; i < contatos.length; i++) {
 			if (contatos[i] != null) {
-				System.out.println(formataContato(i, contatos[i]));
+				System.out.println(formataContato(i, contatos[i].nomeCompleto()));
 			}
 		}
 	}
@@ -103,9 +111,9 @@ public class MainAgenda {
 	 */
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
 		System.out.print("\nQual contato> ");
-		int posicao = scanner.nextInt();
-		String contato = agenda.getContato(posicao);
-		System.out.println("Dados do contato:\n" + formataContato(posicao, contato));
+		int posicao = Integer.parseInt(scanner.nextLine());
+		Contato contato = agenda.getContato(posicao);
+		System.out.println("Dados do contato:\n" + formataContato(posicao, contato.toString()));
 	}
 
 	/**
@@ -127,10 +135,26 @@ public class MainAgenda {
 	 */
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
 		System.out.print("\nPosição na agenda> ");
-		int posicao = scanner.nextInt();
-		System.out.print("\nNome> ");
-		String nome = scanner.next();
-		agenda.cadastraContato(posicao, nome);
+		int posicao = Integer.parseInt(scanner.nextLine());
+		System.out.print("\nNome: ");
+		String nome = scanner.nextLine();
+		System.out.print("\nSobrenome: ");
+		String sobrenome = scanner.nextLine();
+		
+		String[] numerosTelefone = new String[3];
+		System.out.print("\nTelefone1: ");
+		numerosTelefone[0] = scanner.nextLine();
+		System.out.print("\nTelefone2: ");
+		numerosTelefone[1] = scanner.nextLine();
+		System.out.print("\nTelefone3: ");
+		numerosTelefone[2] = scanner.nextLine();
+		int telefonePrioritario;
+		System.out.print("\nTelefone prioritário: ");
+		telefonePrioritario = Integer.parseInt(scanner.nextLine());
+		int contatoWhatsApp;
+		System.out.print("\nContato WhatsApp: ");
+		contatoWhatsApp = Integer.parseInt(scanner.nextLine());
+		agenda.cadastraContato(posicao, nome, sobrenome, numerosTelefone, telefonePrioritario, contatoWhatsApp);
 	}
 
 	/**
