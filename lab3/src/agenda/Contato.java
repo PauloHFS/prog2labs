@@ -51,9 +51,25 @@ public class Contato {
 	 * Retorna o Nome Completo do Contato.
 	 * @return nome O nome completo em String.
 	 */
-	public String nomeCompleto() {
+	public String getNomeCompleto() {
 		String nomeCompleto = this.nome + " " + this.sobrenome;
 		return nomeCompleto;
+	}
+	
+	/**
+	 * Retorna o número prioritário do Contato.
+	 * @return O número prioritário.
+	 */
+	public String getTelefonePrioritario() {
+		return this.numerosTelefone[this.telefonePrioritario-1];
+	}
+	
+	/**
+	 * Retorna o número do contato do WhatsApp do Contato.
+	 * @return O número do contato do WhatsApp.
+	 */
+	public String getContatoWhatsApp() {
+		return this.numerosTelefone[this.contatoWhatsApp-1];
 	}
 	
 	/**
@@ -97,7 +113,9 @@ public class Contato {
 	public String toString() {
 		String contatoString = this.nome + " " + this.sobrenome + "\n";
 		for (int i = 0; i < this.numerosTelefone.length; i++) {
-			if (i == this.telefonePrioritario-1) {				
+			if (i == this.telefonePrioritario-1 && i == this.contatoWhatsApp-1) {
+				contatoString += this.numerosTelefone[i] + " (prioritário) (zap)\n";
+			} else if (i == this.telefonePrioritario-1) {				
 				contatoString += this.numerosTelefone[i] + " (prioritário)\n";
 			} else if (i == this.contatoWhatsApp-1) {
 				contatoString += this.numerosTelefone[i] + " (zap)\n";

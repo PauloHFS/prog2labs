@@ -37,6 +37,34 @@ public class Agenda {
 	}
 
 	/**
+	 * Gera uma String com os contatos e números prioritários.
+	 * @return String contendo todos os contatos e seus respectivos números prioritários.
+	 */
+	public String getTelefonesPreferidos() {
+		String telefonesPreferidos = "";
+		for (Contato c: this.contatos) {
+			if (c != null) {
+				telefonesPreferidos += c.getNomeCompleto() + " - " + c.getTelefonePrioritario() + "\n";
+			}
+		}
+		return telefonesPreferidos;
+	}
+	
+	/**
+	 * Gera uma String com os contatos e seus números do WhatsApp.
+	 * @return String contendo todos os contatos e seus respectivos números do WhatsApp.
+	 */
+	public String getContatosWhatsApp() {
+		String contatosWhatsApp = "";
+		for (Contato c: this.contatos) {
+			if (c != null) {
+				contatosWhatsApp += c.getNomeCompleto() + " - " + c.getContatoWhatsApp() + "\n";
+			}
+		}
+		return contatosWhatsApp;
+	}
+	
+	/**
 	 * Cadastra um contato em uma posição. Um cadastro em uma posição que já existe sobrescreve o anterior. 
 	 * @param posicao Posição do contato.
 	 * @param nome Nome do contato.

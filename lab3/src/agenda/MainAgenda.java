@@ -48,8 +48,8 @@ public class MainAgenda {
 						"(C)adastrar Contato\n" + 
 						"(L)istar Contatos\n" + 
 						"(E)xibir Contato\n" + 
-						"(T)elefones preferidos" +
-						"(Z)aps" +
+						"(T)elefones preferidos\n" +
+						"(Z)aps\n" +
 						"(S)air\n" + 
 						"\n" + 
 						"Opção> ");
@@ -75,10 +75,10 @@ public class MainAgenda {
 			exibeContato(agenda, scanner);
 			break;
 		case "T":
-			//exibeTelefonesPreferidos();
+			exibeTelefonesPreferidos(agenda);
 			break;
 		case "Z":
-			//exibeContatosWhatsApp();
+			exibeContatosWhatsApp(agenda);
 			break;
 		case "S":
 			sai();
@@ -87,7 +87,23 @@ public class MainAgenda {
 			System.out.println("Opção inválida!");
 		}
 	}
-
+	
+	/**
+	 * Imprime lista com os contatos com seus respectivos telefones preferidos.
+	 * @param agenda A agenda sendo manipulada.
+	 */
+	private static void exibeTelefonesPreferidos(Agenda agenda) {
+		System.out.println(agenda.getTelefonesPreferidos());
+	}
+	
+	/**
+	 * Imprime lista com os contatos com seus respectivos contato do WhatsApp.
+	 * @param agenda A agenda sendo manipulada.
+	 */
+	private static void exibeContatosWhatsApp(Agenda agenda) {
+		System.out.println(agenda.getContatosWhatsApp());
+	}
+	
 	/**
 	 * Imprime lista de contatos da agenda.
 	 * 
@@ -98,7 +114,7 @@ public class MainAgenda {
 		Contato[] contatos = agenda.getContatos();
 		for (int i = 0; i < contatos.length; i++) {
 			if (contatos[i] != null) {
-				System.out.println(formataContato(i, contatos[i].nomeCompleto()));
+				System.out.println(formataContato(i, contatos[i].getNomeCompleto()));
 			}
 		}
 	}
