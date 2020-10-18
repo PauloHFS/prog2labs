@@ -26,7 +26,38 @@ public class Agenda {
 	public Contato[] getContatos() {
 		return this.contatos.clone();
 	}
+	
+	/**
+	 * Acessa os dados de contatos com nome especifico.
+	 * @param nome Nome do contato na agenda.
+	 * @return Dados dos contatos.
+	 */
+	public String getContatos(String nome) {
+		String dados = "";
+		for (Contato c: this.contatos) {
+			if (c.getNomeCompleto().contains(nome)) {
+				dados += c + "\n\n";
+			}
+		}
+		return dados;
+	}
 
+	/**
+	 * Retorna o primeiro contato encontrado desejado.
+	 * @param contato Contato desejado
+	 * @return Primeiro contato igual encontrado
+	 */
+	public Contato getContato(Contato contato) {
+		Contato contatoDesejado = null;
+		for (Contato c: this.contatos) {
+			if (c.equals(contato)) {
+				contatoDesejado = c;
+				break;
+			}
+		}
+		return contatoDesejado;
+	}
+	
 	/**
 	 * Acessa os dados de um contato específico.
 	 * @param posicao Posição do contato na agenda.
@@ -43,6 +74,7 @@ public class Agenda {
 		
 	}
 
+	
 	/**
 	 * Gera uma String com os contatos e números prioritários.
 	 * @return String contendo todos os contatos e seus respectivos números prioritários.
