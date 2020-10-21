@@ -2,15 +2,11 @@ package models;
 
 /**
  * Representação de Aluno.
- * 
- * @author Paulo Hernane Fontes e Silva
+ * @author paulo
+ *
  */
 public class Aluno {
-	/**
-	 * Matricula do Aluno.
-	 */
-	private int matricula;
-	
+
 	/**
 	 * Nome do Aluno.
 	 */
@@ -22,21 +18,34 @@ public class Aluno {
 	private String curso;
 	
 	/**
-	 * Constrói um novo Aluno.
-	 * @param matricula Matricula do Aluno.
+	 * Constrói um Aluno a partir de seu nome e seu curso.
 	 * @param nome Nome do Aluno.
 	 * @param curso Curso do Aluno.
 	 */
-	public Aluno(int matricula, String nome, String curso) {
-		this.matricula = matricula;
-		this.nome = nome;
-		this.curso = curso;
+	public Aluno(String nome, String curso) {
+		if (nome == null) {
+			throw new NullPointerException("Nome não pode ser nulo.");
+		} else if (curso == null) {
+			throw new NullPointerException("Curso não pode ser nulo.");
+		} else {			
+			this.nome = nome;
+			this.curso = curso;
+		}
 	}
 	
 	/**
-	 * Verifica se os Objetos são iguais.
-	 * @param o Objeto a ser verificado igualdade.
-	 * @return true se esse objeto possuir a mesma {@link #matricula} que outro objeto.
+	 * Gera o HashCode do Aluno.
+	 * @return o HashCode do Aluno.
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return this.nome.hashCode() + this.curso.hashCode();
+	}
+	
+	/**
+	 * Verifica se um Aluno é igual a outro Objeto.
+	 * @return true se os alunos tiverem o mesmo nome e o mesmo curso, false se não.
 	 * @see java.lang.Object#equals(Object)
 	 */
 	@Override
@@ -51,18 +60,16 @@ public class Aluno {
 		
 		Aluno other = (Aluno) o;
 		
-		return this.matricula == other.matricula;
+		return this.nome == other.nome && this.curso == other.curso;
 	}
 	
 	/**
-	 * Gera o HashCode do Aluno.
-	 * @return hashCode do Aluno.
-	 * @see java.lang.Object#hashCode()
+	 * Retorna a representação em String do Aluno.
+	 * @return a representação em String do Aluno.
+	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public int hashCode() {
-		int hashCode = this.matricula;
-		return hashCode;
+	public String toString() {
+		return this.nome + " - " + this.curso;
 	}
-	
 }
