@@ -9,7 +9,7 @@ public class Cliente {
 	/**
 	 * CPF do Cliente.
 	 */
-	private int cpf;
+	private String cpf;
 	
 	/**
 	 * Nome do Cliente.
@@ -17,9 +17,9 @@ public class Cliente {
 	private String nome;
 	
 	/**
-	 * Local de Trabalho do Cliente.
+	 * Localização do Cliente.
 	 */
-	private String localDeTrabalho;
+	private String localizacao;
 	
 	/**
 	 * E-mail do Cliente.
@@ -30,13 +30,13 @@ public class Cliente {
 	 * Constrói um Cliente com base em seus dados.
 	 * @param cpf CPF do Cliente. 
 	 * @param nome Nome do Cliente.
-	 * @param localDeTrabalho Local de Trabalho do Cliente.
+	 * @param localizacao Localização do Cliente.
 	 * @param email E-mail do Cliente.
 	 */
-	public Cliente(int cpf, String nome, String localDeTrabalho, String email) {
+	public Cliente(String cpf, String nome, String localizacao, String email) {
 		this.cpf = cpf;
 		this.nome = nome;
-		this.localDeTrabalho = localDeTrabalho;
+		this.localizacao = localizacao;
 		this.email = email;
 	}
 	
@@ -49,11 +49,11 @@ public class Cliente {
 	}
 	
 	/**
-	 * Altera o Local de Trabalho do Cliente.
-	 * @param localDeTrabalho Local de Trabalho do Cliente.
+	 * Altera a Localização do Cliente.
+	 * @param localizacao Localizacao do Cliente.
 	 */
-	public void setLocalDeTrabalho(String localDeTrabalho) {
-		this.localDeTrabalho = localDeTrabalho;
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class Cliente {
 	 */
 	@Override
 	public int hashCode() {
-		return 31 * 7 + (int) this.cpf;
+		return this.cpf.hashCode();
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public class Cliente {
 		
 		Cliente other = (Cliente) o;
 		
-		return this.cpf == other.cpf;
+		return this.cpf.equals(other.cpf);
 	}
 
 	/**
@@ -101,6 +101,6 @@ public class Cliente {
 	 */
 	@Override
 	public String toString() {
-		return this.nome + " - " + this.localDeTrabalho + " - " + this.email;
+		return this.nome + " - " + this.localizacao + " - " + this.email;
 	}
 }
