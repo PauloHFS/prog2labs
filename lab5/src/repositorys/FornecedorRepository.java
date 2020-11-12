@@ -1,7 +1,10 @@
 package repositorys;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import models.Fornecedor;
 
@@ -43,6 +46,25 @@ public class FornecedorRepository {
 		return nome;
 	}
 	
+	/**
+	 * Cadastra um Produto no Fornecedor expecificado.
+	 * @param fornecedor Nome do Fornecedor.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @param preco Preço do Produto.
+	 * @throws NullPointerException
+	 */
+	public void cadastraProduto(String fornecedor, String nome, String descricao, Double preco) throws IllegalArgumentException, NullPointerException {
+		if (!this.validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro no cadastro de produto: fornecedor nao pode ser vazio ou nulo.");
+		} else if (this.fornecedores.containsKey(fornecedor)) {
+			this.fornecedores.get(fornecedor).cadastraProduto(nome, descricao, preco);
+		} else {
+			throw new NullPointerException("Erro no cadastro de produto: fornecedor nao existe.");
+		}
+	}
+	
+	
 	//Read
 	/**
 	 * Retorna o Fornecedor com o Nome expecificado.
@@ -65,6 +87,39 @@ public class FornecedorRepository {
 	 */
 	public Collection<Fornecedor> getAllFornecedores() {
 		return this.fornecedores.values();
+	}
+	
+	public String getInfoProduto(String nome, String descricao, String fornecedor) throws IllegalArgumentException, NullPointerException {
+		if (!validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro na exibicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		} else if (!this.fornecedores.containsKey(fornecedor)) {
+			throw new NullPointerException("Erro na exibicao de produto: fornecedor nao existe.");
+		}
+		Fornecedor fornecedorSelecionado = this.getFornecedor(fornecedor);
+		return fornecedorSelecionado.getInfoProduto(nome, descricao);			
+	}
+	
+	public String getAllInfoProduto(String fornecedor) {
+		if (!this.validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro na exibicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		} else if (!this.fornecedores.containsKey(fornecedor)) {
+			throw new NullPointerException("Erro na exibicao de produto: fornecedor nao existe.");
+		}
+		Fornecedor fornecedorSelecionado = this.getFornecedor(fornecedor);
+		return fornecedorSelecionado.getInfoAllProdutos();
+	}
+	
+	public String getAllInfoProdutosAllFornecedores() {
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>(this.getAllFornecedores());
+		Collections.sort(fornecedores);
+		String allInfoProdutosAllFornecedores = "";
+		for (int i = 0; i < fornecedores.size(); i++) {
+			allInfoProdutosAllFornecedores += fornecedores.get(i).getInfoAllProdutos();
+			if (i != fornecedores.size() - 1) {
+				allInfoProdutosAllFornecedores += " | ";
+			}
+		}
+		return allInfoProdutosAllFornecedores;
 	}
 	
 	//Update
@@ -94,6 +149,16 @@ public class FornecedorRepository {
 		}
 	}
 	
+	public void editaProduto(String nome, String descricao, String fornecedor, Double novoPreco) throws IllegalArgumentException, NullPointerException {
+		if (!this.validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro na edicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		} else if (!this.fornecedores.containsKey(fornecedor)) {
+			throw new NullPointerException("Erro na edicao de produto: fornecedor nao existe.");
+		} else {
+			this.getFornecedor(fornecedor).editaProduto(nome, descricao, novoPreco);			
+		}
+	}
+	
 	//Delete
 	public void removeFornecedor(String nome) {
 		if (!this.validaAtributo(nome)) {
@@ -105,6 +170,16 @@ public class FornecedorRepository {
 		}
 	}
 
+	public void removeProduto(String nome, String descricao, String fornecedor) {
+		if (!this.validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro na remocao de produto: fornecedor nao pode ser vazio ou nulo.");
+		} else if (!this.fornecedores.containsKey(fornecedor)) {
+			throw new NullPointerException("Erro na remocao de produto: fornecedor nao existe.");
+		} else {
+			this.getFornecedor(fornecedor).removeProduto(nome, descricao);		
+		}
+	}
+	
 	//Auxiliar
 	/**
 	 * Valida o um Atributo.
@@ -115,4 +190,5 @@ public class FornecedorRepository {
 	private boolean validaAtributo(String atributo) {
 		return !(atributo == null || atributo.isBlank() || atributo.isEmpty());
 	}
+	
 }

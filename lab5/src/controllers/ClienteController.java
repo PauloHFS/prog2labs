@@ -2,7 +2,10 @@ package controllers;
 
 import repositorys.ClienteRepository;
 import models.Cliente;
-import java.util.Collection;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Controller de Cliente.
@@ -56,9 +59,13 @@ public class ClienteController {
 	 */
 	public String getInfoAllClientes() {
 		String infoAllClientes = "";
-		Collection<Cliente> clientes = this.clientes.getAllClientes();
-		for (Cliente cliente : clientes) {
-			infoAllClientes += cliente.toString() + " | ";
+		List<Cliente> clientes = new ArrayList<Cliente>(this.clientes.getAllClientes());
+		Collections.sort(clientes);
+		for (int i = 0; i < clientes.size(); i++) {
+			infoAllClientes += clientes.get(i).toString();
+			if (i != clientes.size()-1) {
+				infoAllClientes += " | ";
+			}
 		}
 		return infoAllClientes;
 	}

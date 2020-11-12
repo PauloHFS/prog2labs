@@ -30,7 +30,7 @@ public class Facade {
 	}
 	
 	/**
-	 * Adicionar um novo Cliente ao sistema.
+	 * Adiciona um novo Cliente ao sistema.
 	 * @param cpf CPF do Cliente.
 	 * @param nome Nome do Cliente.
 	 * @param email Email do Cliente.
@@ -42,17 +42,17 @@ public class Facade {
 	}
 	
 	/**
-	 * 
-	 * @param nome
-	 * @param email
-	 * @param telefone
+	 * Adiciona um novo Fornecedor ao sistema.
+	 * @param nome Nome do Fornecedor.
+	 * @param email Email do Fornecedor.
+	 * @param telefone Telefone do Fornecedor.
 	 */
 	public String adicionaFornecedor(String nome, String email, String telefone) {
 		return this.fornecedores.cadastraFornecedor(nome, email, telefone);
 	}
 	
 	public void adicionaProduto(String fornecedor, String nome, String descricao, Double preco) {
-		
+		this.fornecedores.cadastrarProduto(fornecedor, nome, descricao, preco);
 	}
 	
 	public void adicionaCompra(String cpf, String fornecedor, String data, String nome_prod, String desc_prod) {
@@ -60,7 +60,7 @@ public class Facade {
 	}
 	
 	/**
-	 * Retorna a informação do Cliente desejado.
+	 * Retorna as informações do Cliente desejado.
 	 * @param cpf CPF do Cliente.
 	 * @return A representação em String do Cliente.
 	 */
@@ -69,34 +69,36 @@ public class Facade {
 	}
 	
 	/**
-	 * 
-	 * @param nome
+	 * Retorna as informações do Fornecedor desejado.
+	 * @param nome Nome do Fornecedor.
+	 * @return A representação em String do Fornecedor.
 	 */
 	public String exibeFornecedor(String nome) {
 		return this.fornecedores.getInfoFornecedor(nome);
 	}
 	
-	public void exibeProduto(String nome, String descricao, String fornecedor) {
-		
+	public String exibeProduto(String nome, String descricao, String fornecedor) {
+		return this.fornecedores.exibeProduto(nome, descricao, fornecedor);
 	}
 	
-	public void exibeClientes() {
-		
+	public String exibeClientes() {
+		return this.clientes.getInfoAllClientes();
 	}
 	
 	/**
-	 * 
+	 * Retorna as informações de todos os Fornecedores cadastrados no sistema.
+	 * @return A representação em String de todos os Fornecedores.
 	 */
-	public void exibeFornecedores() {
-		this.fornecedores.getInfoAllFornecedores();
+	public String exibeFornecedores() {
+		return this.fornecedores.getInfoAllFornecedores();
 	}
 	
-	public void exibeProdutosFornecedor(String fornecedor) {
-		
+	public String exibeProdutosFornecedor(String fornecedor) {
+		return this.fornecedores.exibeProdutosFornecedor(fornecedor);
 	}
 	
-	public void exibeProdutos() {
-		
+	public String exibeProdutos() {
+		return this.fornecedores.exibeProdutos();
 	}
 	
 	public void exibeContas(String cpf, String fornecedor) {
@@ -131,8 +133,8 @@ public class Facade {
 		this.fornecedores.editaFornecedor(nome, atributo, novoValor);
 	}
 	
-	public void editaProduto(String nome, String descricao, String fornecedor, String novoPreco) {
-		
+	public void editaProduto(String nome, String descricao, String fornecedor, Double novoPreco) {
+		this.fornecedores.editaProduto(nome, descricao, fornecedor, novoPreco);
 	}
 	
 	/**
@@ -148,7 +150,7 @@ public class Facade {
 	}
 	
 	public void removeProduto(String nome, String descricao, String fornecedor) {
-		
+		this.fornecedores.removeProduto(nome, descricao, fornecedor);
 	}
 	
 	public void listarCompras() {
