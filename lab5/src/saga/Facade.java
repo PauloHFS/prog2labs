@@ -98,7 +98,7 @@ public class Facade {
 	}
 	
 	public String exibeProdutos() {
-		return "";
+		return this.fornecedores.getInfoAllProdutosOfAllFornecedores();
 	}
 	
 	public void exibeContas(String cpf, String fornecedor) {

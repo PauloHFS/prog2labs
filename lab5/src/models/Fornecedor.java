@@ -79,15 +79,19 @@ public class Fornecedor implements Comparable<Fornecedor> {
 	 * @return Representação de String da lista com os Produtos cadastrados.
 	 */
 	public String getInfoAllProdutos() {
-		String infoAllProdutos = "";
 		List<Produto> produtos = new ArrayList<Produto>(this.produtos.getAllProdutos());
-		for (int i = 0; i < produtos.size(); i++) {
-			infoAllProdutos += this.nome + " - " + produtos.get(i);
-			if (i != produtos.size()-1) {
-				infoAllProdutos += " | ";
+		String infoAllProdutos = "";
+		if (produtos.size() != 0) {
+			for (int i = 0; i < produtos.size(); i++) {
+				infoAllProdutos += this.nome + " - " + produtos.get(i);				
+				if (i != produtos.size()-1) {
+					infoAllProdutos += " | ";			
+				}
 			}
+		} else {
+			return this.nome + " -";
 		}
-		return infoAllProdutos;
+		return infoAllProdutos;	
 	}
 	
 	/**

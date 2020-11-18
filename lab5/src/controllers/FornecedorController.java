@@ -155,5 +155,13 @@ public class FornecedorController {
 	public void removeProduto(String fornecedor, String nome, String descricao) {
 		this.fornecedores.removeProduto(fornecedor, nome, descricao);
 	}
+
+	/**
+	 * Retorna todas as informações de todos os Produtos de todos os Fornecedores.
+	 * @return A representação em String de todos os produtos de todos os fornecedores.
+	 */
+	public String getInfoAllProdutosOfAllFornecedores() {
+		return this.fornecedores.getInfoAllProdutosOfAllFornecedores();
+	}
 	
 }

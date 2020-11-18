@@ -1,7 +1,10 @@
 package repositorys;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import models.Fornecedor;
 
@@ -190,6 +193,23 @@ public class FornecedorRepository {
 			throw new NullPointerException("Erro na exibicao de produto: fornecedor nao existe.");
 		}
 		return this.fornecedores.get(fornecedor).getInfoAllProdutos();
+	}
+	
+	/**
+	 * Retorna todas as informações de todos os Produtos de todos os Fornecedores.
+	 * @return A representação em String de todos os produtos de todos os fornecedores.
+	 */
+	public String getInfoAllProdutosOfAllFornecedores() {
+		String infoAllProdutosOfAllFornecedores = "";
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>(this.fornecedores.values());
+		Collections.sort(fornecedores);
+		for (int i = 0; i < fornecedores.size(); i++) {
+			infoAllProdutosOfAllFornecedores += fornecedores.get(i).getInfoAllProdutos();
+			if (i != fornecedores.size()-1) {
+				infoAllProdutosOfAllFornecedores += " | ";
+			}	
+		}
+		return infoAllProdutosOfAllFornecedores;
 	}
 	
 	/**
