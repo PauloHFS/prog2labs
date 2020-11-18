@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controllers.ProdutoController;
@@ -20,7 +21,7 @@ public class Fornecedor implements Comparable<Fornecedor> {
 	 */
 	private String telefone;
 	
-	private ProdutoController produtosController;
+	private ProdutoController produtos;
 	
 	/**
 	 * Contrói um Fornecedor com base em seus dados.
@@ -33,7 +34,7 @@ public class Fornecedor implements Comparable<Fornecedor> {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
-		this.produtosController = new ProdutoController();
+		this.produtos = new ProdutoController();
 	}
 	
 	/**
@@ -52,35 +53,70 @@ public class Fornecedor implements Comparable<Fornecedor> {
 		this.telefone = telefone;
 	}
 	
+	//ProdutoController
+	/**
+	 * Cadastra um novo Produto ao sistema.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @param preco Preço do Produto.
+	 */
 	public void cadastraProduto(String nome, String descricao, Double preco) {
-		this.produtosController.cadastraProduto(nome, descricao, preco);
+		this.produtos.cadastraProduto(nome, descricao, preco);
 	}
 	
+	/**
+	 * Retorna as Informações do Produto.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @return A representação em String do Produto.
+	 */
 	public String getInfoProduto(String nome, String descricao) {
-		return this.produtosController.getInfoProduto(nome, descricao);
+		return this.produtos.getInfoProduto(nome, descricao);
 	}
 	
+	/**
+	 * Retorna a representação de String da lista ordenada de todos os Produtos cadastrados.
+	 * @return Representação de String da lista com os Produtos cadastrados.
+	 */
 	public String getInfoAllProdutos() {
-		List<Produto> produtos = this.produtosController.getAllProdutos();
 		String infoAllProdutos = "";
-		if (produtos.isEmpty()) {
-			return this.nome + " -";
-		}
+		List<Produto> produtos = new ArrayList<Produto>(this.produtos.getAllProdutos());
 		for (int i = 0; i < produtos.size(); i++) {
 			infoAllProdutos += this.nome + " - " + produtos.get(i);
-			if (i != produtos.size() - 1) {
+			if (i != produtos.size()-1) {
 				infoAllProdutos += " | ";
 			}
 		}
 		return infoAllProdutos;
 	}
 	
-	public void editaProduto(String nome, String descricao, Double novoPreco) {
-		this.produtosController.editaProduto(nome, descricao, novoPreco);
+	/**
+	 * Verifica se exite um Produto no Sistema com dado Nome e Descricao.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @return true se existir, false se não.
+	 */
+	public boolean temProduto(String nome, String descricao) {
+		return this.produtos.temProduto(nome, descricao);
 	}
 	
+	/**
+	 * Altera o preço de um Produto.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @param novoPreco Novo Preço do Produto.
+	 */
+	public void editaProduto(String nome, String descricao, Double novoPreco) {
+		this.produtos.editaProduto(nome, descricao, novoPreco);
+	}
+	
+	/**
+	 * Remove um produto do Sistema.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 */
 	public void removeProduto(String nome, String descricao) {
-		this.produtosController.removeProduto(nome, descricao);
+		this.produtos.removeProduto(nome, descricao);
 	}
 	
 	/**

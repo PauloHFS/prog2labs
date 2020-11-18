@@ -64,6 +64,17 @@ public class ProdutoRepository {
 		return this.produtos.values();
 	}
 	
+	public boolean temProduto(String nome, String descricao) {
+		if (!this.validaAtributo(nome)) {
+			throw new IllegalArgumentException("Erro ao verificar existencia de Produto: nome nao pode ser vazio ou nulo.");
+		} else if (!this.validaAtributo(descricao)) {
+			throw new IllegalArgumentException("Erro ao verificar existencia de Produto: descricao nao pode ser vazio ou nulo.");
+		} else if (this.produtos.containsKey(nome.hashCode() + descricao.hashCode())) {
+			return true;
+		} 		
+		return false;
+	}
+	
 	//Update
 	public void editaProduto(String nome, String descricao, Double novoPreco) {
 		if (!this.validaAtributo(nome)) {

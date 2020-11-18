@@ -79,6 +79,20 @@ public class ClienteRepository {
 		return this.clientes.values();
 	}
 	
+	/**
+	 * Verifica se o Cliente está cadastrado no sistema dado seu CPF.
+	 * @param cpf CPF do Cliente.
+	 * @return true se existir, false se não.
+	 */
+	public boolean temCliente(String cpf) {
+		if (!this.validaCPF(cpf)) {
+			throw new IllegalArgumentException("Erro na verificacao da existencia do cliente: cpf nao pode ser vazio ou nulo.");
+		} else if (this.clientes.containsKey(cpf)) {
+			return true;
+		}
+		return false;
+	}
+	
 	//Update
 	/**
 	 * Edita o Cliente com base no seu CPF.

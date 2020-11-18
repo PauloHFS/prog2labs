@@ -40,10 +40,6 @@ public class FornecedorController {
 		return this.fornecedores.cadastraFornecedor(nome, email, telefone);
 	}
 	
-	public void cadastrarProduto(String fornecedor, String nome, String descricao, Double preco) {
-		this.fornecedores.cadastraProduto(fornecedor, nome, descricao, preco);
-	}
-	
 	//Read
 	/**
 	 * Retorna as informações de Fornecedor com o nome desejado.
@@ -73,16 +69,13 @@ public class FornecedorController {
 		return infoAllFornecedores;
 	}
 	
-	public String exibeProduto(String nome, String descricao, String fornecedor) {
-		return this.fornecedores.getInfoProduto(nome, descricao, fornecedor);
-	}
-	
-	public String exibeProdutosFornecedor(String fornecedor) {
-		return this.fornecedores.getAllInfoProduto(fornecedor);
-	}
-	
-	public String exibeProdutos() {
-		return this.fornecedores.getAllInfoProdutosAllFornecedores();
+	/**
+	 * Verifica se um Fornecedor de dado nome está cadastrado no sistema.
+	 * @param nome Nome do Fornecedor.
+	 * @return true se existe, false se não.
+	 */
+	public boolean temFornecedor(String nome) {
+		return this.fornecedores.temFornecedor(nome);
 	}
 	
 	//Update
@@ -96,10 +89,6 @@ public class FornecedorController {
 		this.fornecedores.editaFornecedor(nome, atributo, novoValor);
 	}
 	
-	public void editaProduto(String nome, String descricao, String fornecedor, Double novoPreco) {
-		this.fornecedores.editaProduto(nome, descricao, fornecedor, novoPreco);
-	}
-	
 	//Detele
 	/**
 	 * Remove o Fornecedor do Sistema.
@@ -109,7 +98,62 @@ public class FornecedorController {
 		this.fornecedores.removeFornecedor(nome);
 	}
 	
-	public void removeProduto(String nome, String descricao, String fornecedor) {
-		this.fornecedores.removeProduto(nome, descricao, fornecedor);
+	//ProdutoController
+	/**
+	 * Cadastra um novo Produto ao sistema.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @param preco Preço do Produto.
+	 */
+	public void cadastraProduto(String fornecedor, String nome, String descricao, Double preco) {
+		this.fornecedores.cadastraProduto(fornecedor, nome, descricao, preco);
 	}
+	
+	/**
+	 * Retorna as Informações do Produto.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @return A representação em String do Produto.
+	 */
+	public String getInfoProduto(String fornecedor, String nome, String descricao) {
+		return this.fornecedores.getInfoProduto(fornecedor, nome, descricao);
+	}
+	
+	/**
+	 * Retorna uma lista ordenada de todos os Produtos cadastrados.
+	 * @return Lista com os Produtos cadastrados.
+	 */
+	public String getAllProdutos(String fornecedor) {
+		return this.fornecedores.getAllProdutos(fornecedor);
+	}
+	
+	/**
+	 * Verifica se exite um Produto no Sistema com dado Nome e Descricao.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @return true se existir, false se não.
+	 */
+	public boolean temProduto(String fornecedor, String nome, String descricao) {
+		return this.fornecedores.temProduto(fornecedor, nome, descricao);
+	}
+	
+	/**
+	 * Altera o preço de um Produto.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @param novoPreco Novo Preço do Produto.
+	 */
+	public void editaProduto(String fornecedor, String nome, String descricao, Double novoPreco) {
+		this.fornecedores.editaProduto(fornecedor, nome, descricao, novoPreco);
+	}
+	
+	/**
+	 * Remove um produto do Sistema.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 */
+	public void removeProduto(String fornecedor, String nome, String descricao) {
+		this.fornecedores.removeProduto(fornecedor, nome, descricao);
+	}
+	
 }

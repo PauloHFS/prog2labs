@@ -52,7 +52,7 @@ public class Facade {
 	}
 	
 	public void adicionaProduto(String fornecedor, String nome, String descricao, Double preco) {
-		this.fornecedores.cadastrarProduto(fornecedor, nome, descricao, preco);
+		this.fornecedores.cadastraProduto(fornecedor, nome, descricao, preco);
 	}
 	
 	public void adicionaCompra(String cpf, String fornecedor, String data, String nome_prod, String desc_prod) {
@@ -78,7 +78,7 @@ public class Facade {
 	}
 	
 	public String exibeProduto(String nome, String descricao, String fornecedor) {
-		return this.fornecedores.exibeProduto(nome, descricao, fornecedor);
+		return this.fornecedores.getInfoProduto(fornecedor, nome, descricao);
 	}
 	
 	public String exibeClientes() {
@@ -94,11 +94,11 @@ public class Facade {
 	}
 	
 	public String exibeProdutosFornecedor(String fornecedor) {
-		return this.fornecedores.exibeProdutosFornecedor(fornecedor);
+		return this.fornecedores.getAllProdutos(fornecedor);
 	}
 	
 	public String exibeProdutos() {
-		return this.fornecedores.exibeProdutos();
+		return "";
 	}
 	
 	public void exibeContas(String cpf, String fornecedor) {
@@ -122,19 +122,13 @@ public class Facade {
 	public void editaCliente(String cpf, String atributo, String novoValor) {
 		this.clientes.editaCliente(cpf, atributo, novoValor);
 	}
-	
-	/**
-	 * 
-	 * @param nome
-	 * @param atributo
-	 * @param novoValor
-	 */
+
 	public void editaFornecedor(String nome, String atributo, String novoValor) {
 		this.fornecedores.editaFornecedor(nome, atributo, novoValor);
 	}
 	
 	public void editaProduto(String nome, String descricao, String fornecedor, Double novoPreco) {
-		this.fornecedores.editaProduto(nome, descricao, fornecedor, novoPreco);
+		this.fornecedores.editaProduto(fornecedor, nome, descricao, novoPreco);
 	}
 	
 	/**
@@ -150,7 +144,7 @@ public class Facade {
 	}
 	
 	public void removeProduto(String nome, String descricao, String fornecedor) {
-		this.fornecedores.removeProduto(nome, descricao, fornecedor);
+		this.fornecedores.removeProduto(fornecedor, nome, descricao);
 	}
 	
 	public void listarCompras() {

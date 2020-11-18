@@ -70,6 +70,15 @@ public class ClienteController {
 		return infoAllClientes;
 	}
 	
+	/**
+	 * Verifica se um Cliente esta cadastrado no Sistema dado um CPF.
+	 * @param cpf CPF do Cliente.
+	 * @return true se existir, false se não.
+	 */
+	public boolean temCliente(String cpf) { 
+		return this.clientes.temCliente(cpf);
+	}
+	
 	//Update
 	/**
 	 * Altera algum atributo do Cliente com o CPF passado por parametro.

@@ -1,8 +1,5 @@
 package models;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Representação de Cliente.
  * @author Paulo Hernane Fontes e Silva
@@ -30,11 +27,6 @@ public class Cliente implements Comparable<Cliente> {
 	private String email;
 	
 	/**
-	 * Mapa de Fornecedor e sua respectiva Conta.
-	 */
-	private Map<String, String> contas;
-	
-	/**
 	 * Constrói um Cliente com base em seus dados.
 	 * @param cpf CPF do Cliente. 
 	 * @param nome Nome do Cliente.
@@ -46,7 +38,6 @@ public class Cliente implements Comparable<Cliente> {
 		this.nome = nome;
 		this.localizacao = localizacao;
 		this.email = email;
-		this.contas = new HashMap<String, String>();
 	}
 	
 	/**
@@ -71,17 +62,6 @@ public class Cliente implements Comparable<Cliente> {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	/**
-	 * Adiciona compra a conta no Fornecedor.
-	 * @param fornecedor Fornecedor da Conta.
-	 * @param data Data da Compra.
-	 * @param nome_prod Nome do Produto.
-	 */
-	public void adicionaCompra(String fornecedor, String data, String nome_prod) {
-		String conta = this.contas.get(fornecedor);
-		conta += "\n" + nome_prod + " - " + data; 
 	}
 	
 	/**
