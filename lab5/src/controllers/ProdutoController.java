@@ -58,6 +58,10 @@ public class ProdutoController {
 		return produtos;
 	}
 	
+	public Double getPrecoProduto(String nome, String descricao) {
+		return this.produtosRepo.getPrecoProduto(nome, descricao);
+	}
+	
 	/**
 	 * Verifica se exite um Produto no Sistema com dado Nome e Descricao.
 	 * @param nome Nome do Produto.
@@ -88,4 +92,5 @@ public class ProdutoController {
 	public void removeProduto(String nome, String descricao) {
 		this.produtosRepo.removeProduto(nome, descricao);
 	}
+
 }

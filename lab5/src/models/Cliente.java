@@ -1,5 +1,7 @@
 package models;
 
+import controllers.ContaController;
+
 /**
  * Representação de Cliente.
  * @author Paulo Hernane Fontes e Silva
@@ -26,6 +28,8 @@ public class Cliente implements Comparable<Cliente> {
 	 */
 	private String email;
 	
+	private ContaController contas;
+	
 	/**
 	 * Constrói um Cliente com base em seus dados.
 	 * @param cpf CPF do Cliente. 
@@ -38,6 +42,7 @@ public class Cliente implements Comparable<Cliente> {
 		this.nome = nome;
 		this.localizacao = localizacao;
 		this.email = email;
+		this.contas = new ContaController();
 	}
 	
 	/**
@@ -62,6 +67,23 @@ public class Cliente implements Comparable<Cliente> {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	//ContaController
+	public void adicionaConta(String fornecedor, String nome_prod, String data, Double preco) {
+		this.contas.adicionaConta(fornecedor, nome_prod, data, preco);
+	}
+	
+	public Double getDebito(String fornecedor) {
+		return this.contas.getDebito(fornecedor);	
+	}
+	
+	public String getInfoContaOfFornecedor(String fornecedor) {
+		return this.contas.getInfoContaOfFornecedor(fornecedor);
+	}
+	
+	public String getInfoAllContasOfAllFornecedores() {
+		return this.contas.getInfoAllContasOfAllFornecedores();
 	}
 	
 	/**

@@ -94,6 +94,10 @@ public class Fornecedor implements Comparable<Fornecedor> {
 		return infoAllProdutos;	
 	}
 	
+	public Double getPrecoProduto(String nome, String descricao) {
+		return this.produtos.getPrecoProduto(nome, descricao);
+	}
+	
 	/**
 	 * Verifica se exite um Produto no Sistema com dado Nome e Descricao.
 	 * @param nome Nome do Produto.
@@ -163,6 +167,12 @@ public class Fornecedor implements Comparable<Fornecedor> {
 		return this.nome + " - " + this.email + " - " + this.telefone;
 	}
 
+	/**
+	 * Compara esse Objeto com outro Objeto do tipo Fornecedor.
+	 * @return n < 0 se esse objeto for menor que o outro,
+	 * 		   n = 0 se esse objeto for igual ao outro,
+	 *         n > 0 se esse objeto for maior que o outro.
+	 */
 	@Override
 	public int compareTo(Fornecedor o) {
 		return this.nome.compareTo(o.nome);

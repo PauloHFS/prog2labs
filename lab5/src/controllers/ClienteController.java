@@ -90,6 +90,22 @@ public class ClienteController {
 		this.clientes.editaCliente(cpf, atributo, novoValor);
 	}
 
+	public void adicionaConta(String cpf, String fornecedor, String nome_prod, String data, Double preco) {
+		this.clientes.adicionaConta(cpf, fornecedor, nome_prod, data, preco);
+	}
+	
+	public Double getDebito(String cpf, String fornecedor) {
+		return this.clientes.getDebito(cpf, fornecedor);
+	}
+	
+	public String getInfoContaOfFornecedor(String cpf, String fornecedor) {
+		return this.clientes.getInfoContaOfFornecedor(cpf, fornecedor);
+	}
+	
+	public String getInfoAllContasOfAllFornecedores(String cpf) {
+		return this.clientes.getInfoAllContasOfAllFornecedores(cpf);
+	}
+	
 	//Delete
 	/**
 	 * Remove o Cliente do Sistema.

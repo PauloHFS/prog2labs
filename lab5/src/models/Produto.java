@@ -42,6 +42,10 @@ public class Produto implements Comparable<Produto> {
 		this.preco = preco;
 	}
 	
+	public Double getPreco() {
+		return preco;
+	}
+	
 	/**
 	 * Retorna o HashCode do Produto.
 	 * @return O HashCode do Produto.
@@ -80,8 +84,15 @@ public class Produto implements Comparable<Produto> {
 		return this.nome + " - " + this.descricao + " - R$" + String.format("%,.2f", this.preco).replace('.', ',');
 	}
 
+	/**
+	 * Compara esse Objeto com outro Objeto do tipo Produto.
+	 * @return n < 0 se esse objeto for menor que o outro,
+	 * 		   n = 0 se esse objeto for igual ao outro,
+	 *         n > 0 se esse objeto for maior que o outro.
+	 */
 	@Override
 	public int compareTo(Produto o) {
 		return this.nome.compareTo(o.nome);
 	}
+
 }

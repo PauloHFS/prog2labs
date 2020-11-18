@@ -119,6 +119,10 @@ public class FornecedorController {
 		return this.fornecedores.getInfoProduto(fornecedor, nome, descricao);
 	}
 	
+	public Double getPrecoProduto(String fornecedor, String nome, String descricao) {
+		return this.fornecedores.getPrecoProduto(fornecedor, nome, descricao);
+	}
+	
 	/**
 	 * Retorna uma lista ordenada de todos os Produtos cadastrados.
 	 * @return Lista com os Produtos cadastrados.

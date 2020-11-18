@@ -148,6 +148,37 @@ public class ClienteRepository {
 		}
 	}
 	
+	//ContaController
+	public void adicionaConta(String cpf, String fornecedor, String nome_prod, String data, Double preco) {
+		if (!this.validaAtributo(cpf)){
+			throw new IllegalArgumentException("Erro ao cadastrar compra: cpf nao pode ser vazio ou nulo.");
+		}else if (!this.validaCPF(cpf)) {
+			throw new IllegalArgumentException("Erro ao cadastrar compra: cpf invalido.");
+		} else if (!this.clientes.containsKey(cpf)) {
+			throw new NullPointerException("Erro ao cadastrar compra: cliente nao existe.");
+		} 
+		this.clientes.get(cpf).adicionaConta(fornecedor, nome_prod, data, preco);
+	}
+	
+	public Double getDebito(String cpf, String fornecedor) {
+		if (!this.validaAtributo(cpf)) {
+			throw new NullPointerException("Erro ao recuperar debito: cliente nao existe.");
+		} else if (!this.validaCPF(cpf)) {
+			throw new NullPointerException("Erro ao recuperar debito: cpf invalido.");
+		} else if (!this.clientes.containsKey(cpf)) {
+			throw new NullPointerException("Erro ao recuperar debito: cliente nao existe.");
+		}
+		return this.clientes.get(cpf).getDebito(fornecedor);
+	}
+	
+	public String getInfoContaOfFornecedor(String cpf, String fornecedor) {
+		return this.clientes.get(cpf).getInfoContaOfFornecedor(fornecedor);
+	}
+	
+	public String getInfoAllContasOfAllFornecedores(String cpf) {
+		return this.clientes.get(cpf).getInfoAllContasOfAllFornecedores();
+	}
+	
 	//Auxiliar
 	/**
 	 * Valida o CPF.

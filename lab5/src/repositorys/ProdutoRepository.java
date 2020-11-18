@@ -43,12 +43,19 @@ public class ProdutoRepository {
 		} else if (this.produtos.containsKey(novoProduto.hashCode())) {
 			throw new IllegalArgumentException("Erro no cadastro de produto: produto ja existe.");
 		} else {
-			
 			this.produtos.put(novoProduto.hashCode(), novoProduto);
 		}
 	}
 	
 	//Read
+	/**
+	 * Retorna a representação em String de um determinado Produto.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição de um Produto.
+	 * @return A representação em String de Produto.
+	 * @throws IllegalArgumentException 
+	 * @throws NullPointerException
+	 */
 	public String getInfoProduto(String nome, String descricao) throws IllegalArgumentException, NullPointerException {
 		if (!this.validaAtributo(nome)) {
 			throw new IllegalArgumentException("Erro na exibicao de produto: nome nao pode ser vazio ou nulo.");
@@ -60,10 +67,24 @@ public class ProdutoRepository {
 		return this.produtos.get(nome.hashCode() + descricao.hashCode()).toString();
 	}
 	
+	/**
+	 * Retorna uma Coleção com todos os produtos cadastrados.
+	 * @return Coleção com os produtos cadastrados.
+	 */
 	public Collection<Produto> getAllProdutos() {
 		return this.produtos.values();
 	}
 	
+	public Double getPrecoProduto(String nome, String descricao) {
+		return this.produtos.get(nome.hashCode() + descricao.hashCode()).getPreco();
+	}
+	
+	/**
+	 * Verifica se um produto está cadastrado no sistema.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @return true se existe, false se não.
+	 */
 	public boolean temProduto(String nome, String descricao) {
 		if (!this.validaAtributo(nome)) {
 			throw new IllegalArgumentException("Erro ao verificar existencia de Produto: nome nao pode ser vazio ou nulo.");
@@ -76,6 +97,12 @@ public class ProdutoRepository {
 	}
 	
 	//Update
+	/**
+	 * Altera o preço de um produto.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 * @param novoPreco Novo preço do Produto.
+	 */
 	public void editaProduto(String nome, String descricao, Double novoPreco) {
 		if (!this.validaAtributo(nome)) {
 			throw new IllegalArgumentException("Erro na edicao de produto: nome nao pode ser vazio ou nulo.");
@@ -90,6 +117,11 @@ public class ProdutoRepository {
 	}
 	
 	//Delete
+	/**
+	 * Remove um produto cadastrado no sistema.
+	 * @param nome Nome do Produto.
+	 * @param descricao Descrição do Produto.
+	 */
 	public void removeProduto(String nome, String descricao) {
 		if (!this.validaAtributo(nome)) {
 			throw new IllegalArgumentException("Erro na remocao de produto: nome nao pode ser vazio ou nulo.");

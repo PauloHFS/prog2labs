@@ -182,6 +182,10 @@ public class FornecedorRepository {
 		}
 	}
 	
+	public Double getPrecoProduto(String fornecedor, String nome, String descricao) {
+		return this.fornecedores.get(fornecedor).getPrecoProduto(nome, descricao);
+	}
+	
 	/**
 	 * Retorna uma lista ordenada de todos os Produtos cadastrados.
 	 * @return Lista com os Produtos cadastrados.
@@ -271,4 +275,5 @@ public class FornecedorRepository {
 	private boolean validaAtributo(String atributo) {
 		return !(atributo == null || atributo.isBlank() || atributo.isEmpty());
 	}
+
 }
