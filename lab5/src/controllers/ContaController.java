@@ -2,10 +2,21 @@ package controllers;
 
 import repositorys.ContaRepository;
 
+/**
+ * Controller de Conta.
+ * @author pauloh
+ *
+ */
 public class ContaController {
 	
+	/**
+	 * Repositorio de Contas.
+	 */
 	private ContaRepository contas;
 	
+	/**
+	 * 
+	 */
 	public ContaController() {
 		this.contas = new ContaRepository();
 	}

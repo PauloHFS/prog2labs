@@ -25,14 +25,25 @@ public class ContaRepository {
 	}
 	
 	public Double getDebito(String fornecedor) {
+		if (!this.contas.containsKey(fornecedor)) {
+			throw new IllegalArgumentException("Erro ao recuperar debito: cliente nao tem debito com fornecedor.");
+		}
 		return this.contas.get(fornecedor).getDebito();
 	}
 	
 	public String getInfoContaOfFornecedor(String fornecedor) {
+		if (!this.validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro ao exibir conta do cliente: fornecedor nao pode ser vazio ou nulo.");
+		} else if (!this.contas.containsKey(fornecedor)) {
+			throw new NullPointerException("Erro ao exibir conta do cliente: cliente nao tem nenhuma conta com o fornecedor.");
+		}
 		return this.contas.get(fornecedor).toString();
 	}
 	
 	public String getInfoAllContasOfAllFornecedores() {
+		if (this.contas.isEmpty()) {
+			throw new NullPointerException("Erro ao exibir contas do cliente: cliente nao tem nenhuma conta.");
+		}
 		List<Conta> contas = new ArrayList<Conta>(this.contas.values());
 		String infoAllContasOfAllFornecedores = "";
 		for (int i = 0; i < contas.size(); i++) {

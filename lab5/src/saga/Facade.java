@@ -20,6 +20,9 @@ public class Facade {
 	 * Controller de Fornecedor.
 	 */
 	private FornecedorController fornecedores;
+
+	private String criterioDeOrdenacaoRelatorios;
+	
 	
 	/**
 	 * Constrói a Facade do sistema.
@@ -27,6 +30,7 @@ public class Facade {
 	public Facade() {
 		this.clientes = new ClienteController();
 		this.fornecedores = new FornecedorController();
+		this.criterioDeOrdenacaoRelatorios = null;
 	}
 	
 	/**
@@ -140,20 +144,28 @@ public class Facade {
 	}
 	
 	public String exibeContas(String cpf, String fornecedor) {
+		if (!this.validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro ao exibir conta do cliente: fornecedor nao pode ser vazio ou nulo.");
+		} else if (!this.fornecedores.temFornecedor(fornecedor)) {
+			throw new IllegalArgumentException("Erro ao exibir conta do cliente: fornecedor nao existe.");
+		}
 		return this.clientes.getInfoContaOfFornecedor(cpf, fornecedor);
 	}
 	
 	public String exibeContasClientes(String cpf) {
+		if (!this.validaAtributo(cpf)) {
+			throw new IllegalArgumentException("Erro ao exibir contas do cliente: cpf nao pode ser vazio ou nulo.");
+		}
 		return this.clientes.getInfoAllContasOfAllFornecedores(cpf);
 	}
 	
 	public Double getDebito(String cpf, String fornecedor) {
-		if (!this.validaAtributo(fornecedor)) {
-			throw new IllegalArgumentException("Erro ao recuperar debito: fornecedor nao pode ser vazio ou nulo.");
-		} else if (!this.validaAtributo(cpf)) {
+		if (!this.validaAtributo(cpf)) {
 			throw new IllegalArgumentException("Erro ao recuperar debito: cpf nao pode ser vazio ou nulo.");
+		} else if (!this.validaAtributo(fornecedor)) {
+			throw new IllegalArgumentException("Erro ao recuperar debito: fornecedor nao pode ser vazio ou nulo.");
 		} else if (!this.fornecedores.temFornecedor(fornecedor)) {
-			throw new IllegalArgumentException("Erro ao recuperar debito: fornecedor nao existe.");
+			throw new NullPointerException("Erro ao recuperar debito: fornecedor nao existe.");
 		}
 		return this.clientes.getDebito(cpf, fornecedor);
 	}
@@ -216,11 +228,25 @@ public class Facade {
 	}
 	
 	public void listarCompras() {
+		if (this.criterioDeOrdenacaoRelatorios == null) {
+			throw new NullPointerException("Erro na listagem de compras: criterio ainda nao definido pelo sistema.");
+		}
 		
 	}
 	
-	public void ordenarPor(String criterio) {
-		
+	public void ordenaPor(String criterio) {
+		if (!this.validaAtributo(criterio)) {
+			throw new IllegalArgumentException("Erro na listagem de compras: criterio nao pode ser vazio ou nulo.");
+		}
+		switch (criterio) {
+		case "Cliente":
+		case "Fornecedor":
+		case "Data":
+			this.criterioDeOrdenacaoRelatorios = criterio;
+			break;
+		default:
+			throw new IllegalArgumentException("Erro na listagem de compras: criterio nao oferecido pelo sistema.");
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -244,4 +270,5 @@ public class Facade {
 	private boolean validaAtributo(String atributo) {
 		return !(atributo == null || atributo.isBlank() || atributo.isEmpty());
 	}
+
 }

@@ -79,7 +79,7 @@ public class Cliente implements Comparable<Cliente> {
 	}
 	
 	public String getInfoContaOfFornecedor(String fornecedor) {
-		return this.contas.getInfoContaOfFornecedor(fornecedor);
+		return "Cliente: " + this.nome + " | " + this.contas.getInfoContaOfFornecedor(fornecedor);
 	}
 	
 	public String getInfoAllContasOfAllFornecedores() {

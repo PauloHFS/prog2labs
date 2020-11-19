@@ -1,6 +1,7 @@
 package repositorys;
 
 import java.util.Map;
+
 import java.util.Collection;
 import java.util.HashMap;
 import models.Cliente;
@@ -172,10 +173,22 @@ public class ClienteRepository {
 	}
 	
 	public String getInfoContaOfFornecedor(String cpf, String fornecedor) {
+		if (!this.validaAtributo(cpf)) {
+			throw new IllegalArgumentException("Erro ao exibir conta do cliente: cpf nao pode ser vazio ou nulo.");
+		} else if (!this.validaCPF(cpf)) {
+			throw new IllegalArgumentException("Erro ao exibir conta do cliente: cpf invalido.");
+		} else if (!this.clientes.containsKey(cpf)) {
+			throw new NullPointerException("Erro ao exibir conta do cliente: cliente nao existe.");
+		}
 		return this.clientes.get(cpf).getInfoContaOfFornecedor(fornecedor);
 	}
 	
 	public String getInfoAllContasOfAllFornecedores(String cpf) {
+		if (!this.validaCPF(cpf)) {
+			throw new IllegalArgumentException("Erro ao exibir contas do cliente: cpf invalido.");
+		} else if (!this.clientes.containsKey(cpf)) {
+			throw new NullPointerException("Erro ao exibir contas do cliente: cliente nao existe.");
+		}
 		return this.clientes.get(cpf).getInfoAllContasOfAllFornecedores();
 	}
 	

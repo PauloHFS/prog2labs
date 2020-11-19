@@ -18,7 +18,7 @@ public class Conta {
 	}
 	
 	public void adicionaCompra(String nome_prod, String data, Double preco) {
-		this.compras.add(nome_prod + " - " + data);
+		this.compras.add(nome_prod + " - " + data.replace("/", "-"));
 		this.debito += preco;
 	}
 	
@@ -48,12 +48,12 @@ public class Conta {
 	
 	@Override
 	public String toString() {
-		String contaString = this.fornecedor;
+		String contaString = this.fornecedor + " | ";
 		for (int i = 0; i < this.compras.size(); i++) {
+			contaString += this.compras.get(i);
 			if (i != this.compras.size()-1) {
 				contaString += " | ";
 			}
-			contaString += this.compras.get(i);
 		}
 		return contaString;
 	}
