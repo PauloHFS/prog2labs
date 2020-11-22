@@ -28,7 +28,7 @@ public class ControlerCentral {
 		this.cc = new ControlerCliente();
 		this.cf = new ControlerFornecedor();
 	}
-
+	
 	/**
 	 * 
 	 * @param cpf
@@ -301,5 +301,13 @@ public class ControlerCentral {
 	 */
 	public String listarCompras() {
 		return this.cc.listarCompras();
+	}
+
+	public void adicionaCombo(String fornecedor, String nome, String descricao, Double fator, String produtos) {
+		this.cf.adicionaCombo(fornecedor, nome, descricao, fator, produtos);	
+	}
+	
+	public void editaCombo(String nomeCombo, String descricao, String fornecedor, double novoFator) {
+		this.cf.editaCombo(nomeCombo, descricao, fornecedor, novoFator);
 	}
 }

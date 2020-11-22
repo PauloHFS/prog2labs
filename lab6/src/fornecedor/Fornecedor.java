@@ -4,6 +4,7 @@ import java.util.HashMap;import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import produto.Combo;
 import produto.Produto;
 import utilidades.ComparatorProduto;
 
@@ -63,7 +64,7 @@ public class Fornecedor {
 
 		this.comparador = new ComparatorProduto();
 	}
-
+	
 	/**
 	 * Retorna a representação textual do fornecedor no formato "Nome" - "Email" -
 	 * "Telefone"
@@ -95,7 +96,7 @@ public class Fornecedor {
 	public int hashCode() {
 		return this.getNome().hashCode();
 	}
-
+	
 	/**
 	 * Retorna o nome do fornecedor
 	 * 
@@ -172,7 +173,7 @@ public class Fornecedor {
 			}
 		}
 	}
-
+	
 	/**
 	 * Exibe um produto do fornecedor dado o nome e a descricao do produto
 	 * 
@@ -263,4 +264,58 @@ public class Fornecedor {
 		return this.produtos.get(nomeProduto + descricaoProduto).getPreco();
 	}
 
+	public void adicionaCombo(String nomeCombo, String descricao, double fator, String produtos) {
+		
+		if (this.produtos.containsKey(nomeCombo + descricao)) {
+			throw new IllegalArgumentException("Erro no cadastro de combo: combo ja existe.");
+		}
+		
+		double preco = 0.0;
+		String[] produtosArr = produtos.split(",");
+		
+		for (int i = 0; i < produtosArr.length; i++) {
+			String[] nomeDescricao = produtosArr[i].trim().split(" - ");
+			
+			if (!this.produtos.containsKey(nomeDescricao[0] + nomeDescricao[1])) {
+				throw new IllegalArgumentException("Erro no cadastro de combo: produto nao existe.");
+			} else if (this.produtos.get(nomeDescricao[0] + nomeDescricao[1]) instanceof Combo) {
+				throw new IllegalArgumentException("Erro no cadastro de combo: um combo nao pode possuir combos na lista de produtos.");
+			}
+			
+			preco += this.produtos.get(nomeDescricao[0] + nomeDescricao[1]).getPreco();
+		}
+		
+		preco *= (double) (1 - fator);
+		
+		this.produtos.put(nomeCombo + descricao, new Combo(nomeCombo, descricao, preco, fator));
+		
+		//ver pra que que serve!
+		this.produtosCadastrados.add(nomeCombo + descricao);
+
+		for (int i = this.produtosCadastrados.size() - 1; i > 0; i--) {
+			String produto1 = this.produtosCadastrados.get(i);
+			String produto2 = this.produtosCadastrados.get(i - 1);
+
+			Produto p1 = this.produtos.get(produto1);
+			Produto p2 = this.produtos.get(produto2);
+
+			int compare = this.comparador.compare(p1, p2);
+
+			if (compare < 0) {
+				Collections.swap(this.produtosCadastrados, i, i - 1);
+			}
+		}
+	}
+
+	public void editaCombo(String nomeCombo, String descricao, double novoFator) {
+		
+		if (!this.produtos.containsKey(nomeCombo + descricao)) {
+			throw new IllegalArgumentException("Erro na edicao de combo: produto nao existe.");
+		}
+		
+		Combo combo = (Combo) this.produtos.get(nomeCombo + descricao);
+		combo.modificaProduto((combo.getPreco()/(1-combo.getFator()))*(1-novoFator));
+		combo.setFator(novoFator);
+	}
+	
 }

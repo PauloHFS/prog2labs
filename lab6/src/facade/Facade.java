@@ -6,7 +6,7 @@ public class Facade {
 	public Facade() {
 		this.cc = new ControlerCentral();
 	}
-
+	
 	/**
 	 * 
 	 * @param cpf
@@ -216,5 +216,13 @@ public class Facade {
 	 */
 	public String listarCompras() {
 		return this.cc.listarCompras();
+	}
+	
+	public void adicionaCombo(String fornecedor, String nome, String descricao, double fator, String produtos) {
+		this.cc.adicionaCombo(fornecedor, nome, descricao, fator, produtos);	
+	}
+	
+	public void editaCombo(String nomeCombo, String descricao, String fornecedor, double novoFator) {
+		this.cc.editaCombo(nomeCombo, descricao, fornecedor, novoFator);
 	}
 }

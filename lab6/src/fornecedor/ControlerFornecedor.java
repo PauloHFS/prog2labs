@@ -34,7 +34,7 @@ public class ControlerFornecedor {
 		this.fornecedores = new HashMap<String, Fornecedor>();
 		this.nomesCadastrados = new ArrayList<String>();
 	}
-
+	
 	/**
 	 * Adiciona um fornecedor ao sistema dado seu nome, telefone e email
 	 * 
@@ -375,5 +375,50 @@ public class ControlerFornecedor {
 		}
 
 		return false;
+	}
+
+	public void adicionaCombo(String fornecedor, String nome, String descricao, Double fator, String produtos) {
+		Util.testaNull(fornecedor, "Erro no cadastro de combo: fornecedor nao pode ser vazio ou nulo.");
+		Util.testaVazio(fornecedor, "Erro no cadastro de combo: fornecedor nao pode ser vazio ou nulo.");
+
+		Util.testaNull(nome, "Erro no cadastro de combo: nome nao pode ser vazio ou nulo.");
+		Util.testaVazio(nome, "Erro no cadastro de combo: nome nao pode ser vazio ou nulo.");
+
+		Util.testaNull(descricao, "Erro no cadastro de combo: descricao nao pode ser vazia ou nula.");
+		Util.testaVazio(descricao, "Erro no cadastro de combo: descricao nao pode ser vazia ou nula.");
+
+		Util.testaNull(produtos, "Erro no cadastro de combo: combo deve ter produtos.");
+		Util.testaVazio(produtos, "Erro no cadastro de combo: combo deve ter produtos.");
+		
+		if (fator <= 0 || fator >= 1) {
+			throw new IllegalArgumentException("Erro no cadastro de combo: fator invalido.");
+		}
+
+		if (!this.fornecedores.containsKey(fornecedor)) {
+			throw new IllegalArgumentException("Erro no cadastro de combo: fornecedor nao existe.");
+		}
+		
+		this.fornecedores.get(fornecedor).adicionaCombo(nome, descricao, fator, produtos);
+	}
+
+	public void editaCombo(String nomeCombo, String descricao, String fornecedor, double novoFator) {
+		Util.testaNull(fornecedor, "Erro na edicao de combo: fornecedor nao pode ser vazio ou nulo.");
+		Util.testaVazio(fornecedor, "Erro na edicao de combo: fornecedor nao pode ser vazio ou nulo.");
+
+		Util.testaNull(nomeCombo, "Erro na edicao de combo: nome nao pode ser vazio ou nulo.");
+		Util.testaVazio(nomeCombo, "Erro na edicao de combo: nome nao pode ser vazio ou nulo.");
+
+		Util.testaNull(descricao, "Erro na edicao de combo: descricao nao pode ser vazia ou nula.");
+		Util.testaVazio(descricao, "Erro na edicao de combo: descricao nao pode ser vazia ou nula.");
+		
+		if (novoFator <= 0 || novoFator >= 1) {
+			throw new IllegalArgumentException("Erro na edicao de combo: fator invalido.");
+		}
+
+		if (!this.fornecedores.containsKey(fornecedor)) {
+			throw new IllegalArgumentException("Erro na edicao de combo: fornecedor nao existe.");
+		}
+		
+		this.fornecedores.get(fornecedor).editaCombo(nomeCombo, descricao, novoFator);
 	}
 }
