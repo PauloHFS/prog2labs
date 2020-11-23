@@ -1,6 +1,7 @@
 package fornecedor;
 
-import java.util.HashMap;import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -264,6 +265,15 @@ public class Fornecedor {
 		return this.produtos.get(nomeProduto + descricaoProduto).getPreco();
 	}
 
+	/**
+	 * Cadastra um Combo com os produtos de um determinado Fornecedor
+	 * O Combo também é um produto do fornecedor, mas não pode fazer parte de um outro combo.
+	 * @param fornecedor Nome do Fornecedor.
+	 * @param nome Nome do Combo.
+	 * @param descricao Descrição do Combo.
+	 * @param fator Fator de desconto do Combo.
+	 * @param produtos Produtos que pertencem ao Combo.
+	 */
 	public void adicionaCombo(String nomeCombo, String descricao, double fator, String produtos) {
 		
 		if (this.produtos.containsKey(nomeCombo + descricao)) {
@@ -289,7 +299,6 @@ public class Fornecedor {
 		
 		this.produtos.put(nomeCombo + descricao, new Combo(nomeCombo, descricao, preco, fator));
 		
-		//ver pra que que serve!
 		this.produtosCadastrados.add(nomeCombo + descricao);
 
 		for (int i = this.produtosCadastrados.size() - 1; i > 0; i--) {
@@ -307,6 +316,12 @@ public class Fornecedor {
 		}
 	}
 
+	/**
+	 * Altera o Fator de desconto do Combo.
+	 * @param nomeCombo Nome do Combo.
+	 * @param descricao Descrição do Combo.
+	 * @param novoFator Novo Fator de Desconto.
+	 */
 	public void editaCombo(String nomeCombo, String descricao, double novoFator) {
 		
 		if (!this.produtos.containsKey(nomeCombo + descricao)) {

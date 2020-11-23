@@ -303,10 +303,26 @@ public class ControlerCentral {
 		return this.cc.listarCompras();
 	}
 
+	/**
+	 * Cadastra um Combo com os produtos de um determinado Fornecedor
+	 * O Combo também é um produto do fornecedor, mas não pode fazer parte de um outro combo.
+	 * @param fornecedor Nome do Fornecedor.
+	 * @param nome Nome do Combo.
+	 * @param descricao Descrição do Combo.
+	 * @param fator Fator de desconto do Combo.
+	 * @param produtos Produtos que pertencem ao Combo.
+	 */
 	public void adicionaCombo(String fornecedor, String nome, String descricao, Double fator, String produtos) {
 		this.cf.adicionaCombo(fornecedor, nome, descricao, fator, produtos);	
 	}
 	
+	/**
+	 * Altera o Fator de desconto do Combo.
+	 * @param nomeCombo Nome do Combo.
+	 * @param descricao Descrição do Combo.
+	 * @param fornecedor Nome do Fornecedor.
+	 * @param novoFator Novo Fator de Desconto.
+	 */
 	public void editaCombo(String nomeCombo, String descricao, String fornecedor, double novoFator) {
 		this.cf.editaCombo(nomeCombo, descricao, fornecedor, novoFator);
 	}
