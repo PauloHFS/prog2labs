@@ -266,10 +266,9 @@ public class Fornecedor {
 	}
 
 	/**
-	 * Cadastra um Combo com os produtos de um determinado Fornecedor
+	 * Cadastra um Combo com os produtos de um determinado Fornecedor.
 	 * O Combo também é um produto do fornecedor, mas não pode fazer parte de um outro combo.
-	 * @param fornecedor Nome do Fornecedor.
-	 * @param nome Nome do Combo.
+	 * @param nomeCombo Nome do Combo.
 	 * @param descricao Descrição do Combo.
 	 * @param fator Fator de desconto do Combo.
 	 * @param produtos Produtos que pertencem ao Combo.
