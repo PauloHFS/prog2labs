@@ -72,7 +72,7 @@ public class HistoricoDeJogo {
 		private Jogador jogador1;
 		private Jogador jogador2;
 
-		public SituacaoNoJogo(Jogador j1, Jogada jogadaJ1, Jogador j2, Jogada jogadaJ2, List<Peca> maoJ1,
+		public SituacaoNoJogo(Jogador j1, Jogada jogadaJ1, Jogador j2, Jogada jogadaJ2, List<Peca> maoJ1, 
 				List<Peca> maoJ2, List<Peca> naMesa) {
 			this.jogador1 = j1;
 			this.jogadaJ1 = jogadaJ1;

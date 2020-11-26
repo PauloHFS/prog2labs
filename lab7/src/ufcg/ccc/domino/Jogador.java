@@ -101,4 +101,16 @@ public class Jogador {
 	public List<Peca> getMao() {
 		return new LinkedList<>(mao);
 	}
+
+	/**
+	 * Retorna o somatorio dos numeros das peças da mão do jogador.
+	 * @return a soma dos numeros das pecas do jogador.
+	 */
+	public int getSomaNumerosDasPecas() {
+		int soma = 0;
+		for (Peca peca : mao) {
+			soma += peca.getNumDireito() + peca.getNumEsquerdo();
+		}
+		return soma;
+	}
 }

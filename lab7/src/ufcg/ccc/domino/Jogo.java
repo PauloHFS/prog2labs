@@ -142,6 +142,20 @@ public class Jogo {
 	}
 
 	/**
+	 * @return Soma dos Numeros da pecas da m�o do jogador 1.
+	 */
+	public int getSomatorioNumeroDasPecasJ1() {
+		return this.jogador1.getSomaNumerosDasPecas();
+	}
+	
+	/**
+	 * @return Soma dos Numeros da pecas da m�o do jogador 2.
+	 */
+	public int getSomatorioNumeroDasPecasJ2() {
+		return this.jogador2.getSomaNumerosDasPecas();
+	}
+
+	/**
 	 * Joga uma rodada do jogo. Ambos os jogadores fazem 1 jogada, iniciando pelo
 	 * jogador 1. As exceções abaixo são necessárias para proteger o jogo de
 	 * estratégias com bugs.
@@ -175,14 +189,31 @@ public class Jogo {
 			return;
 		}
 
+		
 		// se ambos passaram, é empate
 		if (jogadaJ1.getTipo() == TipoJogada.PASSA && jogadaJ2.getTipo() == TipoJogada.PASSA) {
-			this.finalizado = true;
-			this.vencedor = null;
+			if (this.getNumPecasJ1() < this.getNumPecasJ2()) {
+				this.finalizado = true;
+				this.vencedor = this.jogador1.getNome();
+			} else if (this.getNumPecasJ1() > this.getNumPecasJ2()) {
+				this.finalizado = true;
+				this.vencedor = this.jogador2.getNome();
+			} else {
+				if (this.getSomatorioNumeroDasPecasJ1() < this.getSomatorioNumeroDasPecasJ2()) {
+					this.finalizado = true;
+					this.vencedor = this.jogador1.getNome();
+				} else if (this.getSomatorioNumeroDasPecasJ1() > this.getSomatorioNumeroDasPecasJ2()) {
+					this.finalizado = true;
+					this.vencedor = this.jogador2.getNome();
+				} else {
+					this.finalizado = true;
+					this.vencedor = null;
+				}
+			}
 		}
-
 	}
 
+	
 	/**
 	 * Joga o jogo do ponto atual até o seu fim.
 	 * @return 
